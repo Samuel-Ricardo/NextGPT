@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "make start",
+    "docker:startup": "make startup",
     "lint": "next lint",
     "prepare": "husky install",
     "migrate:dev": "prisma migrate dev",
-    "migrate:deploy": "prisma migrate deploy",
+    "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@types/node": "20.0.0",
