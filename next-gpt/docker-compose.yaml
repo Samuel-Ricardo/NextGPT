@@ -10,4 +10,13 @@ services:
       - .:/home/node/app
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
-    
+  
+
+  mysql:
+    image: mysql:8.0.30-debian
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=chat
+    volumes:
+      - .docker/mysql/data:/var/lib/mysql
+
