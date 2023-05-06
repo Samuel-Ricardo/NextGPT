@@ -11,4 +11,15 @@ model Chat {
   id             String   @id @default(uuid())
   remote_chat_id String?
   created_at     DateTime @default(now())
+  messages       Message[]
+}
+
+model Message {
+  id             String   @id @default(uuid())    
+  chat_id        String   @unique
+  chat           Chat     @relation(fields: [chat_id], references: [id])
+  content        String   @db.Text
+  has_aswered    Boolean  @default(false)
+  is_from_bot    Boolean  @default(false)
+  created_at     DateTime @default(now())
 }
