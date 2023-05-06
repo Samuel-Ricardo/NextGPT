@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "husky:prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "make start",
@@ -22,7 +23,7 @@
     "@types/react-dom": "18.2.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
-    "husk": "^0.5.3",
+    "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "next": "13.4.0",
     "prettier": "^2.8.8",
