@@ -13,7 +13,7 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
-    "test": "node --test",
+    "test": "jest --passWithNoTests --color",
     "test:staged": "node --test"
   },
   "dependencies": {
