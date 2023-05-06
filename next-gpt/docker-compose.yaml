@@ -10,7 +10,8 @@ services:
       - .:/home/node/app
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
-  
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:8.0.30-debian
