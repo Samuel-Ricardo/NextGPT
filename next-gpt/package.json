@@ -14,7 +14,8 @@
     "migrate:deploy": "prisma migrate deploy",
     "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
     "test": "jest --passWithNoTests --color",
-    "test:staged": "jest --watchAll --passWithNoTests --color"
+    "test:dev": "jest --watchAll --passWithNoTests --color",
+    "test:staged": "jest --findRelatedTests  --passWithNoTests --color ."
   },
   "dependencies": {
     "@prisma/client": "^4.13.0",
