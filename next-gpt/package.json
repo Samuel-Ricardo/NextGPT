@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "husky:prepare": "husky install",
+    "husky:prepare": "cd ../ && husky install next-gpt/.husky",
     "dev": "next dev",
     "build": "next build",
     "start": "make start",
