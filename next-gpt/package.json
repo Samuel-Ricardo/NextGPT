@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "make start",
     "docker:startup": "make startup",
-    "lint": "next lint",
+    "lint": "eslint ./src/** --fix --no-error-on-unmatched-pattern",
     "prepare": "husky install",
     "migrate:dev": "prisma migrate dev",
-    "migrate:deploy": "prisma migrate deploy"
+    "migrate:deploy": "prisma migrate deploy",
+    "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
+    "test": "node --test",
+    "test:staged": "node --test"
   },
   "dependencies": {
     "@prisma/client": "^4.13.0",
@@ -19,6 +22,7 @@
     "@types/react-dom": "18.2.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
+    "lint-staged": "^13.2.2",
     "next": "13.4.0",
     "prettier": "^2.8.8",
     "react": "18.2.0",
