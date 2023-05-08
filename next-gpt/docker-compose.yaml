@@ -13,6 +13,18 @@ services:
     depends_on:
       - mysql
 
+  test:
+    container_name: app_test
+    build: .
+    command: npm run test
+    volumes:
+      - .:/home/node/app
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+    depends_on:
+      - app
+
+  
   mysql:
     image: mysql:8.0.30-debian
     environment:
