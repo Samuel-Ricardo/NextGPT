@@ -24,7 +24,18 @@ services:
     depends_on:
       - app
 
-  
+  dev_test:
+    container_name: app_dev_test
+    build: .
+    command: npm run test:staged --watchAll
+    volumes:
+      - .:/home/node/app
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+    depends_on:
+      - test
+
+
   mysql:
     image: mysql:8.0.30-debian
     environment:
