@@ -9,8 +9,16 @@ const createJestConfig = nextJest({
 const config ={
   roots: ["<rootDir>/src", "<rootDir>/test"],
   testEnvironment: 'jest-environment-jsdom',
+  moduleDirectories: ["node_modules", "<rootDir>/src"],
+  modulePaths: ["<rootDir>/src"],
   moduleNameMapper: {
-    "^@/(.*)$": '<rootDir>/$1'
+    "^@/(.*)$": '<rootDir>/$1',
+    "^@config$": "<rootDir>/config/index.ts",
+    "^@config/(.*)$": "<rootDir>/config/$1/$1/$1",
+    "^@prisma$": "<rootDir>/app/prisma/prisma.ts",
+    "^@prisma/(.*)$": "<rootDir>/app/prisma/$1",
+    "^@modules/(.*)$": "<rootDir>/app/modules/$1",
+    "^@repository/(.*)$": "<rootDir>/app/repository/$1",
   },
   preset: 'ts-jest',
   transform: {
