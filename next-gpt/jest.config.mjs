@@ -15,7 +15,6 @@ const config ={
   preset: 'ts-jest',
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
-    "^.+\\.(js|jsx)$": "babel-jest",
   },
   collectCoverage: true,
   coverageDirectory: 'coverage',
@@ -23,7 +22,7 @@ const config ={
   collectCoverageFrom: [
     "<rootDir>/src/**/*.ts",
     "<rootDir>/src/**/*.tsx",
-    "<rootDir>/test/**/*.ts"
+    "<rootDir>/test/**/*.(ts|tsx)"
   ]
 };
 
