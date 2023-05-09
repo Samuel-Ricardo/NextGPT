@@ -9,7 +9,7 @@ export class CreateChatUseCase {
     const chat = await this.repository.create(data)
 
     if (!chat) {
-      throw new Error("Chat not found")
+      throw new Error("Chat not created")
     }
 
     return chat
