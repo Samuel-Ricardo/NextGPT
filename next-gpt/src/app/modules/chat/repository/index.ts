@@ -1,10 +1,10 @@
-import { IMessage } from "@modules/message/model"
+import { Message } from "@modules/message/entity"
 import { IAddMessageDTO, ICreateChatDTO, IGetMessagesDTO } from "../DTO"
-import { IChat } from "../model"
+import { Chat } from "../entity"
 
 export interface IChatRepository {
-  create(data: ICreateChatDTO): Promise<IChat>
-  selectAll(): Promise<IChat[]>
-  getMessages(data: IGetMessagesDTO): Promise<IMessage[]>
-  addMessageTo(data: IAddMessageDTO): Promise<IMessage>
+  create(data: ICreateChatDTO): Promise<Chat>
+  selectAll(): Promise<Chat[]>
+  getMessages(data: IGetMessagesDTO): Promise<Message[]>
+  addMessageTo(data: IAddMessageDTO): Promise<Message>
 }
