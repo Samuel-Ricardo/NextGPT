@@ -27,7 +27,7 @@ services:
   dev_test:
     container_name: app_dev_test
     build: .
-    command: npm run test:staged --watchAll
+    command: npm run test:dev:staged
     volumes:
       - .:/home/node/app
     extra_hosts:
