@@ -21,8 +21,12 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@config": ["./src/config/index.ts"],
+      "@config/*": ["./src/config/*"],
       "@prisma": ["./src/app/prisma/prisma.ts"],
+      "@prisma/*": ["./src/app/prisma/*"],
       "@modules/*": ["./src/app/modules/*"],
+      "@repository/*": ["./src/app/repository/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
