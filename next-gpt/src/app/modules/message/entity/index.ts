@@ -13,4 +13,8 @@ export class Message {
   constructor(IMessage: IMessage) {
     Object.assign(this, IMessage)
   }
+
+  static from(IMessage: IMessage) {
+    return new Message(IMessage)
+  }
 }
