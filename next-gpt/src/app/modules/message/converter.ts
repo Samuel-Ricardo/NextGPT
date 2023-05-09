@@ -19,3 +19,13 @@ export function message(data: IMessageData): IMessage {
     created_at: data.created_at,
   } as IMessage
 }
+
+export function messages(data: IMessageData[]): IMessage[] {
+  const messages: IMessage[] = []
+
+  data.forEach((message_data) => messages.push(message(message_data)))
+
+  console.log({ messages })
+
+  return messages
+}
