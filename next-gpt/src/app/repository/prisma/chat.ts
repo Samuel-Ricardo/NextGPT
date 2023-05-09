@@ -8,15 +8,12 @@ import { IChatRepository } from "@modules/chat/repository"
 import { messages } from "@modules/message/converter"
 import { IMessage } from "@modules/message/model"
 import { PrismaClient } from "@prisma/client"
+import { Chat } from "@modules/chat/entity"
 
 export class ChatPrismaRepository implements IChatRepository {
-  private prisma: PrismaClient
+  constructor(private prisma: PrismaClient) {}
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma
-  }
-
-  async create(data: ICreateChatDTO): Promise<IChat> {
+  async create(data: ICreateChatDTO): Promise<Chat> {
     const result = await this.prisma.chat.create({
       data: {
         messages: {
@@ -32,12 +29,13 @@ export class ChatPrismaRepository implements IChatRepository {
       },
     })
 
-    return {
+    return Chat.from({
       id: result.id,
       created_at: result.created_at,
       messages: messages(result.messages),
-    }
+    })
   }
+
   async selectAll(): Promise<IChat[]> {
     throw new Error("Method not implemented.")
   }
