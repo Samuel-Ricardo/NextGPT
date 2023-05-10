@@ -4,11 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 export async function POST(request: NextRequest) {
   const body = await request.json()
 
-  console.log({ body })
-
-  const created = (await chatFactory()).create({ message: body.message })
-
-  console.log({ created })
+  const created = await (await chatFactory()).create({ message: body.message })
 
   return NextResponse.json({ chat: created })
 }
