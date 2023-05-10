@@ -29,6 +29,16 @@ export const VALID_IMESSAGE_WITHOUT_CHAT = {
   created_at: VALID_MESSAGE_DATA.created_at!,
 }
 
+export const VALID_IMESSAGE: IMessage = {
+  id: VALID_MESSAGE_DATA.id!,
+  chat_id: VALID_MESSAGE_DATA.chat_id!,
+  content: VALID_MESSAGE_DATA.content!,
+  has_answered: VALID_MESSAGE_DATA.has_aswered!,
+  is_from_bot: VALID_MESSAGE_DATA.is_from_bot!,
+  created_at: VALID_MESSAGE_DATA.created_at!,
+  chat: Chat.from(VALID_CHAT_DATA),
+}
+
 export const VALID_CHAT = Chat.from(VALID_CHAT_DATA)
 
 export const CREATE_CHAT_DTO: ICreateChatDTO = {
