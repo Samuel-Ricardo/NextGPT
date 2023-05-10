@@ -8,4 +8,10 @@ describe("Message Converter", () => {
       VALID_IMESSAGE_WITHOUT_CHAT
     )
   })
+
+  it("should convert message data to a array of Message Interface", () => {
+    expect(messages([VALID_MESSAGE_DATA])).toStrictEqual([
+      VALID_IMESSAGE_WITHOUT_CHAT,
+    ])
+  })
 })
