@@ -1,4 +1,3 @@
-import { IMessage } from "@/app/modules/message/model"
 import { VALID_IMESSAGE_WITHOUT_CHAT, VALID_MESSAGE_DATA } from "@/config/const"
 import { message, messages } from "@modules/message/converter"
 
