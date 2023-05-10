@@ -9,3 +9,6 @@ setup_db:
 
 migration:
 	npx prisma migrate deploy
+
+push:
+	npm run test && npm run build
