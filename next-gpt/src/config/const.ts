@@ -1,6 +1,16 @@
+import { IMessageData } from "@Types/messages"
 import { ICreateChatDTO } from "@/app/modules/chat/DTO"
 import { Chat } from "@/app/modules/chat/entity"
 import { IChat } from "@modules/chat/model"
+
+export const VALID_MESSAGE_DATA: IMessageData = {
+  id: "1",
+  chat_id: "1",
+  content: "Hello World! :D",
+  has_aswered: false,
+  is_from_bot: false,
+  created_at: new Date(),
+}
 
 export const VALID_CHAT_DATA: IChat = {
   id: "1",
