@@ -2,7 +2,7 @@ import { Context, MockContext, createMockContext } from "@prisma/test/context"
 import { IChatRepository } from "@modules/chat/repository"
 import { ChatPrismaRepository } from "@repository/prisma/chat"
 import { prisma_mock } from "@prisma/test/mock"
-import { CREATE_CHAT_DTO, VALID_CHAT, VALID_CHAT_DATA } from "@config/const"
+import { CREATE_CHAT_DTO, VALID_CHAT } from "@config/const"
 import { CreateChatUseCase } from "@/app/modules/chat/usecases/create"
 
 describe("[Chat] - use-case => create: chat", () => {
