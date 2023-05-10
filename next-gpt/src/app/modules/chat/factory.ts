@@ -1,4 +1,4 @@
-import { ChatPrismaRepository } from "@/app/repository/prisma/chat"
+import { ChatPrismaRepository } from "@repository/prisma/chat"
 import { ChatController } from "./controller"
 import { ChatService } from "./service"
 import { CreateChatUseCase } from "./usecases/create"
