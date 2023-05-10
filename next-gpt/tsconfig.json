@@ -28,7 +28,8 @@
       "@modules/*": ["./src/app/modules/*"],
       "@repository/*": ["./src/app/repository/*"],
       "@Types": ["./src/@types/index.ts"],
-      "@Types/*": ["./src/@types/*"]
+      "@Types/*": ["./src/@types/*"],
+      "@test/*": ["./test/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
