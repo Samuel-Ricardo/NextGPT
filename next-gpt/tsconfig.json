@@ -26,7 +26,9 @@
       "@prisma": ["./src/app/prisma/prisma.ts"],
       "@prisma/*": ["./src/app/prisma/*"],
       "@modules/*": ["./src/app/modules/*"],
-      "@repository/*": ["./src/app/repository/*"]
+      "@repository/*": ["./src/app/repository/*"],
+      "@Types": ["./src/@types/index.ts"],
+      "@Types/*": ["./src/@types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
