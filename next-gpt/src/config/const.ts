@@ -1,7 +1,8 @@
 import { IMessageData } from "@Types/messages"
 import { ICreateChatDTO } from "@/app/modules/chat/DTO"
-import { Chat } from "@/app/modules/chat/entity"
+import { Chat } from "@modules/chat/entity"
 import { IChat } from "@modules/chat/model"
+import { IMessage } from "@modules/message/model"
 
 export const VALID_MESSAGE_DATA: IMessageData = {
   id: "1",
@@ -17,6 +18,15 @@ export const VALID_CHAT_DATA: IChat = {
   messages: [],
   created_at: new Date(),
   remote_chat_id: "1",
+}
+
+export const VALID_IMESSAGE_WITHOUT_CHAT = {
+  id: VALID_MESSAGE_DATA.id!,
+  chat_id: VALID_MESSAGE_DATA.chat_id!,
+  content: VALID_MESSAGE_DATA.content!,
+  has_answered: VALID_MESSAGE_DATA.has_aswered!,
+  is_from_bot: VALID_MESSAGE_DATA.is_from_bot!,
+  created_at: VALID_MESSAGE_DATA.created_at!,
 }
 
 export const VALID_CHAT = Chat.from(VALID_CHAT_DATA)
