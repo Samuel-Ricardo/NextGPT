@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "make start",
     "pre-commit": "npm run lint && lint-staged",
+    "push": "make push", 
     "docker:startup": "make startup",
     "lint": "next lint --fix --dir src",
     "prepare": "husky install",
