@@ -14,6 +14,7 @@ services:
       - mysql
 
   test:
+    restart: on-failure
     container_name: app_test
     build: .
     command: npm run test
@@ -27,6 +28,7 @@ services:
   dev_test:
     container_name: app_dev_test
     build: .
+    restart: on-failure
     command: npm run test:dev:staged
     volumes:
       - .:/home/node/app
@@ -38,6 +40,7 @@ services:
 
   mysql:
     image: mysql:8.0.30-debian
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=chat
@@ -45,3 +48,12 @@ services:
       - .docker/mysql/data:/var/lib/mysql
     ports:
       - 3306:3306
+
+  adminer:
+    container_name: db_adminer
+    image: adminer:latest
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=mysql
+    ports:
+      - 8080:8080 
