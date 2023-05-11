@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 
 /** @type {import('jest').Config} */
 const config ={
+  testEnvironment: "prisma-enviroment-jest",
   roots: ["<rootDir>/src", "<rootDir>/test"],
   testEnvironment: 'jest-environment-jsdom',
   moduleDirectories: ["node_modules", "<rootDir>/src"],
