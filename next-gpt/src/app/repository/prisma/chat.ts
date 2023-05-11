@@ -3,12 +3,11 @@ import {
   ICreateChatDTO,
   IGetMessagesDTO,
 } from "@modules/chat/DTO"
-import { IChat } from "@modules/chat/model"
 import { IChatRepository } from "@modules/chat/repository"
 import { messages } from "@modules/message/converter"
-import { IMessage } from "@modules/message/model"
 import { PrismaClient } from "@prisma/client"
 import { Chat } from "@modules/chat/entity"
+import { Message } from "@modules/message/entity"
 
 export class ChatPrismaRepository implements IChatRepository {
   constructor(private prisma: PrismaClient) {}
