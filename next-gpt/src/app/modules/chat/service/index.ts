@@ -1,4 +1,4 @@
-import { ICreateChatDTO, IGetMessagesDTO } from "../DTO"
+import { IAddMessageDTO, ICreateChatDTO, IGetMessagesDTO } from "../DTO"
 import { AppendMessageUseCase } from "../usecases/append_message"
 import { CreateChatUseCase } from "../usecases/create"
 import { selectAllChatUseCase } from "../usecases/select_all"
@@ -22,5 +22,9 @@ export class ChatService {
 
   async selectMessage(data: IGetMessagesDTO) {
     return await this.select.execute(data)
+  }
+
+  async appendMessage(data: IAddMessageDTO) {
+    return await this.addMessage.execute(data)
   }
 }
