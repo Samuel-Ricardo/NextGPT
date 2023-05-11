@@ -15,11 +15,11 @@ model Chat {
 }
 
 model Message {
-  id          String   @id @default(uuid())
-  chat_id     String   @unique
-  content     String   @db.Text
-  has_aswered Boolean  @default(false)
-  is_from_bot Boolean  @default(false)
-  created_at  DateTime @default(now())
-  chat        Chat     @relation(fields: [chat_id], references: [id])
+  id           String   @id @default(uuid())
+  chat_id      String   @unique
+  content      String   @db.Text
+  has_answered Boolean  @default(false)
+  is_from_bot  Boolean  @default(false)
+  created_at   DateTime @default(now())
+  chat         Chat     @relation(fields: [chat_id], references: [id])
 }
