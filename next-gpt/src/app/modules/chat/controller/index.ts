@@ -1,4 +1,4 @@
-import { ICreateChatDTO, IGetMessagesDTO } from "../DTO"
+import { IAddMessageDTO, ICreateChatDTO, IGetMessagesDTO } from "../DTO"
 import { ChatService } from "../service"
 
 export class ChatController {
@@ -14,5 +14,9 @@ export class ChatController {
 
   async select(data: IGetMessagesDTO) {
     return await this.service.selectMessage(data)
+  }
+
+  async append(data: IAddMessageDTO) {
+    return await this.service.appendMessage(data)
   }
 }
