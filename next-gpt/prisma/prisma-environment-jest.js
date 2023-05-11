@@ -4,29 +4,45 @@ import mysql from 'mysql2'
 import TestEnvironment from "jest-environment-jsdom";
 
 const prisma_migrate = "make migration"
+//Singleton
+const BASE = { 
+  _URL: null,
+  getURL: () => {
+    if (BASE._URL) return BASE._URL
+    
+    // Inside Container
+    BASE._URL = process.env.DATABASE_URL
+    
+    // Outside Container
+    //BASE._URL = "mysql://root:root@mysql:3306/"
+
+    return BASE._URL
+  }
+}
 
 require("dotenv").config({path: resolve(__dirname, "..", ".env.test")});
 
 class CustomEnvironment extends TestEnvironment {
-   
+
+  counter = 0
+  connectionString = []
+  database = []
+
   constructor(config, context) { 
     super(config, context); 
 
-    this.database = `test_db_${Date.now()}`
+    this.counter = this.counter++
+
+    this.database.push(`test_db_${Date.now()}`)
     
     console.log({DATABASE: this.database})
 
-    // out of docker container
-    this.connectionString = `${process.env.DATABASE_URL}${this.database}`
-
-    // inside of docker container
-    //this.connectionString = `${process.env.DOCKER_DATABASE_URL}${this.database}`
+    this.connectionString[this.counter] = `${BASE.getURL()}${this.database[this.counter]}`
   }
 
   setup() {
-  
-    process.env.DATABASE_URL = this.connectionString
-    this.global.process.env.DATABASE_URL = this.connectionString
+    process.env.DATABASE_URL = this.connectionString[this.counter]
+    this.global.process.env.DATABASE_URL = this.connectionString[this.counter]
 
     process.env.NODE_ENV = "test"
 
@@ -36,17 +52,18 @@ class CustomEnvironment extends TestEnvironment {
   }
 
   async teardown() {
-    const client = mysql.createConnection({  
-      host: "localhost",
-      user: "root",
-      password: "root",
-      port: 3306,
-    })
+  this.database.forEach(async (database) => {
+      const client = mysql.createConnection({  
+        host: "mysql",
+        user: "root",
+        password: "root",
+        port: 3306,
+      })
 
-    client.connect()
-    client.query(`DROP DATABASE IF EXISTS ${this.database}`)
-    client.end()
-  
+      client.connect()
+      client.query(`DROP DATABASE ${database}`)
+      client.end()
+    }) 
   }
 }
 
