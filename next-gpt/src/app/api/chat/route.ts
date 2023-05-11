@@ -8,3 +8,7 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ chat: created })
 }
+
+export async function GET(request: NextRequest) {
+  return NextResponse.json({ chat: await (await chatFactory()).selectAll() })
+}
