@@ -7,4 +7,8 @@ export class ChatController {
   async create(data: ICreateChatDTO) {
     return await this.service.createChat(data)
   }
+
+  async selectAll() {
+    return await this.service.selectAllChats()
+  }
 }
