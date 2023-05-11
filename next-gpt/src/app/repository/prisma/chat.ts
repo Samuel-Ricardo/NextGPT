@@ -59,8 +59,16 @@ export class ChatPrismaRepository implements IChatRepository {
     )
   }
   async getMessages(data: IGetMessagesDTO): Promise<Message[]> {
-    throw new Error("Method not implemented.")
+    const results = this.prisma.message.findMany({
+      where: {
+        chat_id: data.chat_id,
+      },
+      orderBy: { created_at: "asc" },
+    })
+
+    return results
   }
+
   async addMessageTo(data: IAddMessageDTO): Promise<Message> {
     throw new Error("Method not implemented.")
   }
