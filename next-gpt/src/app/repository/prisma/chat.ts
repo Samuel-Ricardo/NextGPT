@@ -59,14 +59,14 @@ export class ChatPrismaRepository implements IChatRepository {
     )
   }
   async getMessages(data: IGetMessagesDTO): Promise<Message[]> {
-    const results = this.prisma.message.findMany({
+    const results = await this.prisma.message.findMany({
       where: {
         chat_id: data.chat_id,
       },
       orderBy: { created_at: "asc" },
     })
 
-    return results
+    return messages(results)
   }
 
   async addMessageTo(data: IAddMessageDTO): Promise<Message> {
