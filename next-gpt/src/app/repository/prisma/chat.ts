@@ -58,6 +58,7 @@ export class ChatPrismaRepository implements IChatRepository {
       })
     )
   }
+
   async getMessages(data: IGetMessagesDTO): Promise<Message[]> {
     const results = await this.prisma.message.findMany({
       where: {
