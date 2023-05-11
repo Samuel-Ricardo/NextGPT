@@ -8,7 +8,7 @@ export const VALID_MESSAGE_DATA: IMessageData = {
   id: "1",
   chat_id: "1",
   content: "Hello World! :D",
-  has_aswered: false,
+  has_answered: false,
   is_from_bot: false,
   created_at: new Date(),
 }
@@ -24,7 +24,7 @@ export const VALID_IMESSAGE_WITHOUT_CHAT = {
   id: VALID_MESSAGE_DATA.id!,
   chat_id: VALID_MESSAGE_DATA.chat_id!,
   content: VALID_MESSAGE_DATA.content!,
-  has_answered: VALID_MESSAGE_DATA.has_aswered!,
+  has_answered: VALID_MESSAGE_DATA.has_answered!,
   is_from_bot: VALID_MESSAGE_DATA.is_from_bot!,
   created_at: VALID_MESSAGE_DATA.created_at!,
 }
@@ -33,7 +33,7 @@ export const VALID_IMESSAGE: IMessage = {
   id: VALID_MESSAGE_DATA.id!,
   chat_id: VALID_MESSAGE_DATA.chat_id!,
   content: VALID_MESSAGE_DATA.content!,
-  has_answered: VALID_MESSAGE_DATA.has_aswered!,
+  has_answered: VALID_MESSAGE_DATA.has_answered!,
   is_from_bot: VALID_MESSAGE_DATA.is_from_bot!,
   created_at: VALID_MESSAGE_DATA.created_at!,
   chat: Chat.from(VALID_CHAT_DATA),
