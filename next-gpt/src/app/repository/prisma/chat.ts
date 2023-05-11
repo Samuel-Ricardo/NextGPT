@@ -4,7 +4,7 @@ import {
   IGetMessagesDTO,
 } from "@modules/chat/DTO"
 import { IChatRepository } from "@modules/chat/repository"
-import { messages } from "@modules/message/converter"
+import { message, messages } from "@modules/message/converter"
 import { PrismaClient } from "@prisma/client"
 import { Chat } from "@modules/chat/entity"
 import { Message } from "@modules/message/entity"
@@ -70,6 +70,17 @@ export class ChatPrismaRepository implements IChatRepository {
   }
 
   async addMessageTo(data: IAddMessageDTO): Promise<Message> {
-    throw new Error("Method not implemented.")
+    const chat = await this.prisma.chat.findUniqueOrThrow({
+      where: { id: data.chat_id },
+    })
+
+    const message_created = await this.prisma.message.create({
+      data: {
+        chat_id: chat.id,
+        content: data.message,
+      },
+    })
+
+    return message(message_created)
   }
 }
