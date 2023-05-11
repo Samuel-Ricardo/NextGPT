@@ -6,7 +6,22 @@ export async function GET(
   { params }: { params: { chatId: string } }
 ) {
   const factory = await chatFactory()
-  const chat = await factory.select({ chat_id: params.chatId })
+  const message = await factory.select({ chat_id: params.chatId })
 
-  return new NextResponse(JSON.stringify(chat))
+  return new NextResponse(JSON.stringify({ message }))
+}
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { chatId: string } }
+) {
+  const body = await request.json()
+
+  const factory = await chatFactory()
+  const message = await factory.append({
+    chat_id: params.chatId,
+    message: body.message,
+  })
+
+  return NextResponse.json({ message })
 }
