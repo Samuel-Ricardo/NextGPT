@@ -1,3 +1,7 @@
+/*
+ * @jest-environment ./prisma/prisma-environment-jest
+ */
+
 import { ROUTES } from "@/config"
 import { Chat } from "@prisma/client"
 import "isomorphic-fetch"
