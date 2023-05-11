@@ -1,5 +1,6 @@
 import { execSync } from "child_process";
 import { resolve } from "path";
+import mysql from 'mysql'
 
 const prisma_migrate = "make migration"
 
@@ -32,4 +33,20 @@ class CustomEnvironment extends NodeEnvironment {
 
     execSync(prisma_migrate);
   }
+
+  async teardown() {
+    const client = mysql.createConnection({  
+      host: "mysql",
+      user: "root",
+      password: "root",
+      port: 3306,
+    })
+
+    await client.connect()
+    await client.query(`DROP DATABASE ${this.database}`)
+    await client.end()
+  
+  }
 }
+
+module.exports = CustomEnvironment
