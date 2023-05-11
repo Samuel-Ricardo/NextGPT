@@ -6,7 +6,7 @@ export function message(data: IMessageData): IMessage {
     id: data.id,
     chat_id: data.chat_id,
     content: data.content ? data.content : "",
-    has_answered: data.has_aswered,
+    has_answered: data.has_answered,
     is_from_bot: data.is_from_bot,
     created_at: data.created_at,
   } as IMessage
