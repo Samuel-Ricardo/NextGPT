@@ -1,25 +1,26 @@
 import { execSync } from "child_process";
 import { resolve } from "path";
-import mysql from 'mysql'
+import mysql from 'mysql2'
+import TestEnvironment from "jest-environment-jsdom";
 
 const prisma_migrate = "make migration"
 
 require("dotenv").config({path: resolve(__dirname, "..", ".env.test")});
 
-class CustomEnvironment extends NodeEnvironment {
+class CustomEnvironment extends TestEnvironment {
    
-  constructor(config) { 
-    super(config) 
+  constructor(config, context) { 
+    super(config, context); 
 
-    this.database = `test_db_${Date.now()}_${Math.random()}`
+    this.database = `test_db_${Date.now()}`
     
-    console.log({database: this.database})
+    console.log({DATABASE: this.database})
 
-    // out of docekr container
-    //this.connectionString = `${process.env.DATABASE_URL}${this.database}`
+    // out of docker container
+    this.connectionString = `${process.env.DATABASE_URL}${this.database}`
 
     // inside of docker container
-    this.connectionString = `${process.env.DOCKER_DATABASE_URL}${this.database}`
+    //this.connectionString = `${process.env.DOCKER_DATABASE_URL}${this.database}`
   }
 
   setup() {
@@ -29,22 +30,22 @@ class CustomEnvironment extends NodeEnvironment {
 
     process.env.NODE_ENV = "test"
 
-    console.log({DB_CONNECTION: this.connectionString})
+    console.log({CONNECTION: this.connectionString})
 
     execSync(prisma_migrate);
   }
 
   async teardown() {
     const client = mysql.createConnection({  
-      host: "mysql",
+      host: "localhost",
       user: "root",
       password: "root",
       port: 3306,
     })
 
-    await client.connect()
-    await client.query(`DROP DATABASE ${this.database}`)
-    await client.end()
+    client.connect()
+    client.query(`DROP DATABASE IF EXISTS ${this.database}`)
+    client.end()
   
   }
 }
