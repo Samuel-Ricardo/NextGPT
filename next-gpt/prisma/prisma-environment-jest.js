@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import { resolve } from "path";
 
 const prisma_migrate = "make migration"
@@ -20,7 +21,15 @@ class CustomEnvironment extends NodeEnvironment {
     this.connectionString = `${process.env.DOCKER_DATABASE_URL}${this.database}`
   }
 
+  setup() {
   
+    process.env.DATABASE_URL = this.connectionString
+    this.global.process.env.DATABASE_URL = this.connectionString
 
+    process.env.NODE_ENV = "test"
 
+    console.log({DB_CONNECTION: this.connectionString})
+
+    execSync(prisma_migrate);
+  }
 }
