@@ -10,11 +10,11 @@ const BASE = {
   getURL: () => {
     if (BASE._URL) return BASE._URL
     
-    // Inside Container
+    // Outside Container
     BASE._URL = process.env.DATABASE_URL
     
-    // Outside Container
-    //BASE._URL = "mysql://root:root@mysql:3306/"
+    // inside Container
+    //BASE._URL = process.env.DOCKER_DATABASE_URL
 
     return BASE._URL
   }
@@ -33,7 +33,7 @@ class CustomEnvironment extends TestEnvironment {
 
     this.counter = this.counter++
 
-    this.database.push(`test_db_${Date.now()}`)
+    this.database.push(`test_db_${Math.round(Math.random()+Date.now())}`)
     
     console.log({DATABASE: this.database})
 
@@ -54,7 +54,7 @@ class CustomEnvironment extends TestEnvironment {
   async teardown() {
   this.database.forEach(async (database) => {
       const client = mysql.createConnection({  
-        host: "mysql",
+        host: "localhost",
         user: "root",
         password: "root",
         port: 3306,
