@@ -23,5 +23,7 @@ export async function POST(
     message: body.message,
   })
 
+  console.log({ APPEND: message })
+
   return NextResponse.json({ message })
 }

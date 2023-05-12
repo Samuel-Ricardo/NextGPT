@@ -8,6 +8,8 @@ export class AppendMessageUseCase {
   async execute(chat: IAddMessageDTO): Promise<Message> {
     const result = await this.repository.addMessageTo(chat)
 
+    console.log({ APPEND_RESULT: result })
+
     return {
       ...result,
       id: result.id!,
