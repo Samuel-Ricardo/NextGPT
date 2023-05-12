@@ -27,4 +27,23 @@ describe("ROUTES | CHAT_MESSAGES => /api/chat/[chatId]/messages", () => {
     expect(data).toHaveProperty("messages")
     expect(data.messages).toBeInstanceOf(Array)
   })
+
+  it(" Should return error 500 when no chat found [ POST ] /api/chat/[chatId]/messages ", async () => {
+    const response = await fetch(CHAT_MESSAGES("1"), {
+      method: "POST",
+      body: JSON.stringify({
+        message: "Hello World",
+      }),
+    })
+
+    expect(response.status).toBe(500)
+
+    /*
+    const data = await response.json()
+    console.log({ data })
+  */
+  })
 })
+
+// E2E
+// describe("Create chat and append messages", () => {})

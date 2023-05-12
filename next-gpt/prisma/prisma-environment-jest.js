@@ -4,6 +4,7 @@ import mysql from 'mysql2'
 import TestEnvironment from "jest-environment-jsdom";
 
 const prisma_migrate = "make migration"
+
 //Singleton
 const BASE = { 
   _URL: null,
