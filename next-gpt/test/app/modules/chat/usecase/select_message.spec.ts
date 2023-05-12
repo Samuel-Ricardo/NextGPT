@@ -16,7 +16,7 @@ describe("[CHAT] - use-case => select: message from: chat", () => {
   beforeEach(() => {
     resetMocks()
 
-    repository = new ChatPrismaRepository(
+    repository = new repositoryMock(
       prisma_mock
     ) as jest.Mocked<ChatPrismaRepository>
     select = new SelectMessageUseCase(repository)
