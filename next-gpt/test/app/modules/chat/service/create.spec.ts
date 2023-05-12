@@ -4,7 +4,7 @@ import {
   SelectMessageUseCase,
   selectAllChatUseCase,
 } from "@modules/chat/usecases"
-import { VALID_CHAT } from "@/config/const"
+import { VALID_CHAT, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import { ChatService } from "@modules/chat/service"
 import { resetMocks } from "@test/utils/mock"
 
@@ -55,5 +55,17 @@ describe("Service -> Chat", () => {
 
     await expect(service.selectAllChats()).resolves.toStrictEqual([VALID_CHAT])
     expect(selectAll.execute).toHaveBeenCalledTimes(1)
+  })
+
+  it("Should select messages from chat successfully", async () => {
+    jest
+      .spyOn(select, "execute")
+      .mockResolvedValue([VALID_IMESSAGE_WITHOUT_CHAT])
+
+    await expect(
+      service.selectMessage({ chat_id: VALID_CHAT.id! })
+    ).resolves.toStrictEqual([VALID_IMESSAGE_WITHOUT_CHAT])
+
+    expect(select.execute).toHaveBeenCalledTimes(1)
   })
 })
