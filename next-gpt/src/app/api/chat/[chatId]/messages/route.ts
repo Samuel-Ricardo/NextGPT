@@ -6,9 +6,9 @@ export async function GET(
   { params }: { params: { chatId: string } }
 ) {
   const factory = await chatFactory()
-  const message = await factory.select({ chat_id: params.chatId })
+  const messages = await factory.select({ chat_id: params.chatId })
 
-  return new NextResponse(JSON.stringify({ message }))
+  return new NextResponse(JSON.stringify({ messages }))
 }
 
 export async function POST(
@@ -17,8 +17,8 @@ export async function POST(
 ) {
   const body = await request.json()
 
-  const factory = await chatFactory()
-  const message = await factory.append({
+  const chat = await chatFactory()
+  const message = await chat.append({
     chat_id: params.chatId,
     message: body.message,
   })
