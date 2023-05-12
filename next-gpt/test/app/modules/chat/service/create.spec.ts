@@ -46,5 +46,14 @@ describe("Service -> Chat", () => {
       ...VALID_CHAT,
       remote_chat_id: undefined,
     })
+
+    expect(create.execute).toHaveBeenCalledTimes(1)
+  })
+
+  it("Should select all Chats successfully", async () => {
+    jest.spyOn(selectAll, "execute").mockResolvedValue([VALID_CHAT])
+
+    await expect(service.selectAllChats()).resolves.toStrictEqual([VALID_CHAT])
+    expect(selectAll.execute).toHaveBeenCalledTimes(1)
   })
 })
