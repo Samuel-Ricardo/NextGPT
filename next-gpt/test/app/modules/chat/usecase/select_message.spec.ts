@@ -22,5 +22,18 @@ describe("[CHAT] - use-case => select: message from: chat", () => {
     select = new SelectMessageUseCase(repository)
   })
 
-  it("Should select message by a chat successfully", async () => {})
+  it("Should select message by a chat successfully", async () => {
+    prisma_mock.message.findMany.mockResolvedValue([
+      VALID_IMESSAGE,
+    ] as Message[])
+
+    console.log({
+      VALID_IMESSAGE,
+      SELECTED: await select.execute({ chat_id: VALID_IMESSAGE.chat_id }),
+    })
+
+    await expect(
+      select.execute({ chat_id: VALID_IMESSAGE.chat_id })
+    ).resolves.toEqual([VALID_IMESSAGE_WITHOUT_CHAT])
+  })
 })
