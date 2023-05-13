@@ -31,7 +31,7 @@ const config ={
   collectCoverageFrom: [
     "<rootDir>/src/**/*.ts",
     "<rootDir>/src/**/*.tsx",
-    "<rootDir>/test/**/*.(ts|tsx)"
+//    "<rootDir>/test/**/*.(ts|tsx)"
   ]
 };
 
