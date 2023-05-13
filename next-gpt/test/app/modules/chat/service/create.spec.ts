@@ -68,4 +68,17 @@ describe("Service -> Chat", () => {
 
     expect(select.execute).toHaveBeenCalledTimes(1)
   })
+
+  it("Should append messages to chat successfully", async () => {
+    jest.spyOn(append, "execute").mockResolvedValue(VALID_IMESSAGE_WITHOUT_CHAT)
+
+    await expect(
+      service.appendMessage({
+        chat_id: VALID_CHAT.id!,
+        message: VALID_IMESSAGE_WITHOUT_CHAT.content,
+      })
+    ).resolves.toStrictEqual(VALID_IMESSAGE_WITHOUT_CHAT)
+
+    expect(append.execute).toHaveBeenCalledTimes(1)
+  })
 })
