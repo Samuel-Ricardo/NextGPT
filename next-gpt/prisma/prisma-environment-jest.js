@@ -58,8 +58,11 @@ class CustomEnvironment extends TestEnvironment {
         host: "localhost",
         user: "root",
         password: "root",
-        port: 3306,
+        port: 3307,
+        database
       })
+
+      
 
       client.connect()
       client.query(`DROP DATABASE ${database}`)
