@@ -9,9 +9,11 @@ services:
     volumes:
       - .:/home/node/app
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "host.docker.internal:host-gateway"
     depends_on:
       - mysql
+    networks:
+      - next_gpt
 
   test:
     restart: on-failure
@@ -21,9 +23,11 @@ services:
     volumes:
       - .:/home/node/app
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "host.docker.internal:host-gateway"
     depends_on:
       - app
+    networks:
+        - next_gpt
 
   dev_test:
     container_name: app_dev_test
@@ -33,9 +37,11 @@ services:
     volumes:
       - .:/home/node/app
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "host.docker.internal:host-gateway"
     depends_on:
       - test
+    networks:
+      - next_gpt
 
 
   mysql:
@@ -47,9 +53,13 @@ services:
     volumes:
       - .docker/mysql/data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 3307:3306
     cap_add:
       - SYS_NICE # CAP_SYS_NICE
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - next_gpt
 
   adminer:
     container_name: db_adminer
@@ -58,4 +68,21 @@ services:
     environment:
       - ADMINER_DEFAULT_SERVER=mysql
     ports:
-      - 8080:8080 
+      - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - next_gpt
+
+networks:
+  next_gpt:
+    external: true
+ 
+
+# Mac e Linux
+# /etc/hosts
+
+# 127.0.0.1 host.docker.internal
+
+# Windows
+# C:\Windows\System32\drivers\etc\hosts
