@@ -1,5 +1,4 @@
 import { ChatServiceClient as GPRCChatServiceClient } from "../rpc/pb/ChatService"
-import { ChatService } from "@/app/modules/chat/service"
 import { ENV } from "@/config"
 import { Metadata } from "@grpc/grpc-js"
 import { chatClient } from "../client"
@@ -9,11 +8,7 @@ export class ChatServiceClient {
 
   constructor(private chatClient: GPRCChatServiceClient) {}
 
-  chatStream(data: {
-    chat_id: string | null
-    user_id: string
-    message: string
-  }) {
+  chatStream(data: { chat_id?: string; user_id: string; message: string }) {
     const metadata = new Metadata()
 
     metadata.set("authorization", this.autorization)
@@ -34,6 +29,7 @@ export class ChatServiceClient {
     stream.on("error", (err) => {
       console.log({ CHAT_STREAM_ERROR: err })
     })
+
     stream.on("end", () => {
       console.log("END CHAT STREAM")
     })
