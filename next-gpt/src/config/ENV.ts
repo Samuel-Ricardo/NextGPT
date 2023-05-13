@@ -4,6 +4,9 @@ export const ENV = {
   API: {
     URL: () => process.env.API_URL || "http://localhost:3000/",
   },
+  GRCP: {
+    AUTHORIZATION: () => process.env.GRCP_AUTHORIZATION || "123456",
+  },
   DOCKER: {
     API: {
       URL: () => process.env.DOCKER_API_URL || "http://app:3000/",
