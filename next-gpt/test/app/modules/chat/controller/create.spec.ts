@@ -49,5 +49,19 @@ describe("Controller => Chat", () => {
     await expect(
       controller.select({ chat_id: VALID_CHAT.id! })
     ).resolves.toStrictEqual([VALID_IMESSAGE_WITHOUT_CHAT])
+
+    expect(service.selectMessage).toBeCalledTimes(1)
+  })
+
+  it("Should append a Message successfully", async () => {
+    jest
+      .spyOn(service, "appendMessage")
+      .mockResolvedValue(VALID_IMESSAGE_WITHOUT_CHAT)
+
+    await expect(
+      controller.append({ chat_id: VALID_CHAT.id!, message: "Hello World" })
+    ).resolves.toStrictEqual(VALID_IMESSAGE_WITHOUT_CHAT)
+
+    expect(service.appendMessage).toBeCalledTimes(1)
   })
 })
