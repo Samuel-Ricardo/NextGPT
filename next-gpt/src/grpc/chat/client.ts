@@ -2,6 +2,7 @@ import { ChatServiceClient as GPRCChatServiceClient } from "../rpc/pb/ChatServic
 import { ChatService } from "@/app/modules/chat/service"
 import { ENV } from "@/config"
 import { Metadata } from "@grpc/grpc-js"
+import { chatClient } from "../client"
 
 export class ChatServiceClient {
   private autorization = ENV.GRCP.AUTHORIZATION()
@@ -38,5 +39,11 @@ export class ChatServiceClient {
     })
 
     return stream
+  }
+}
+
+export class ChatServiceClientFactory {
+  static create() {
+    return new ChatServiceClient(chatClient)
   }
 }
