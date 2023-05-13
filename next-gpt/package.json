@@ -18,7 +18,8 @@
     "test": "jest --passWithNoTests --color",
     "test:dev": "jest --watchAll --passWithNoTests --color",
     "test:staged": "jest --findRelatedTests  --passWithNoTests --color .",
-    "test:dev:staged": "jest --findRelatedTests  --passWithNoTests --watchAll --color ."
+    "test:dev:staged": "jest --findRelatedTests  --passWithNoTests --watchAll --color .",
+    "grpc:compile": "rm -rf ./src/grpc/rpc && proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/grpc/rpc ./proto/*.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.14",
