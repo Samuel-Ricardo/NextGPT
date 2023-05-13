@@ -40,4 +40,14 @@ describe("Controller => Chat", () => {
 
     expect(service.selectAllChats).toBeCalledTimes(1)
   })
+
+  it("Should select a Message successfully", async () => {
+    jest
+      .spyOn(service, "selectMessage")
+      .mockResolvedValue([VALID_IMESSAGE_WITHOUT_CHAT])
+
+    await expect(
+      controller.select({ chat_id: VALID_CHAT.id! })
+    ).resolves.toStrictEqual([VALID_IMESSAGE_WITHOUT_CHAT])
+  })
 })
