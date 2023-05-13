@@ -6,10 +6,18 @@ export const ENV = {
   },
   GRCP: {
     AUTHORIZATION: () => process.env.GRCP_AUTHORIZATION || "123456",
+    SERVICE: {
+      URL: () => process.env.GRCP_SERVICE_URL || "localhost:50052",
+    },
   },
   DOCKER: {
     API: {
       URL: () => process.env.DOCKER_API_URL || "http://app:3000/",
+    },
+    GRCP: {
+      SERVICE: {
+        URL: () => process.env.GRCP_SERVICE_URL || "host.docker.internal:50052",
+      },
     },
   },
 }
