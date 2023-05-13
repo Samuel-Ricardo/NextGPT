@@ -1,6 +1,6 @@
 import { ChatController } from "@/app/modules/chat/controller"
 import { ChatService } from "@modules/chat/service"
-import { VALID_CHAT } from "@/config/const"
+import { VALID_CHAT, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import { resetMocks } from "@test/utils/mock"
 
 describe("Controller => Chat", () => {
@@ -29,5 +29,15 @@ describe("Controller => Chat", () => {
       ...VALID_CHAT,
       remote_chat_id: undefined,
     })
+
+    expect(service.createChat).toBeCalledTimes(1)
+  })
+
+  it("Should select all Chats successfully", async () => {
+    jest.spyOn(service, "selectAllChats").mockResolvedValue([VALID_CHAT])
+
+    await expect(controller.selectAll()).resolves.toStrictEqual([VALID_CHAT])
+
+    expect(service.selectAllChats).toBeCalledTimes(1)
   })
 })
