@@ -13,7 +13,7 @@
     "lint": "next lint --fix --dir src",
     "prepare": "husky install",
     "migrate:dev": "prisma migrate dev",
-    "migrate:deploy": "prisma migrate deploy",
+    "migrate:deploy": "prisma migrate deploy --applied \"20230511132911_rename_field\" ",
     "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
     "test": "jest --passWithNoTests --color",
     "test:dev": "jest --watchAll --passWithNoTests --color",
