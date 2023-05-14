@@ -1,4 +1,8 @@
-import { message } from "@modules/message/converter"
+import { IMessageData } from "@/@types"
+import { chat } from "@/app/modules/chat/converter"
+import { Chat } from "@/app/modules/chat/entity"
+import { IMessage } from "@/app/modules/message/model"
+import { message, messages } from "@modules/message/converter"
 import { ICreateMessageDTO, IUpdateMessageDTO } from "@modules/message/DTO"
 import { Message } from "@modules/message/entity"
 import { IMessageRepository } from "@modules/message/repository"
@@ -25,6 +29,13 @@ class PrismaMessageRepository implements IMessageRepository {
       },
     })
 
+    return message(result)
+  }
+
+  async selectById(id: string): Promise<Message> {
+    const result = await this.prisma.message.findUniqueOrThrow({
+      where: { id },
+    })
     return message(result)
   }
 }
