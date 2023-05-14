@@ -32,13 +32,13 @@ class CustomEnvironment extends TestEnvironment {
   constructor(config, context) { 
     super(config, context); 
 
-    this.counter = this.counter++
-
     this.database.push(`test_db_${Math.round(Math.random()+Date.now())}`)
     
     console.log({DATABASE: this.database})
 
     this.connectionString[this.counter] = `${BASE.getURL()}${this.database[this.counter]}`
+   
+    this.counter = this.counter++
   }
 
   setup() {
@@ -52,21 +52,22 @@ class CustomEnvironment extends TestEnvironment {
     execSync(prisma_migrate);
   }
 
-  async teardown() {
-  this.database.forEach(async (database) => {
+  teardown() {
+    this.database.forEach(async (database) => {
       const client = mysql.createConnection({  
         host: "localhost",
         user: "root",
         password: "root",
-        port: 3307,
-        database
+        port: 3307
       })
-
       
-
+      console.log({CONNECTING_TO_DATABASE: this.connectionString})
+      
       client.connect()
       client.query(`DROP DATABASE ${database}`)
       client.end()
+    
+      console.log({DROP_DATABASE: database})
     }) 
   }
 }
