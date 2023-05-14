@@ -38,6 +38,39 @@ class PrismaMessageRepository implements IMessageRepository {
     })
     return message(result)
   }
+
+  async selectByIdWithChat(id: string): Promise<Chat> {
+    const result = await this.prisma.message.findUniqueOrThrow({
+      where: { id },
+      include: { chat: true },
+    })
+
+    const {
+      id: _id,
+      content,
+      has_answered,
+      created_at,
+      chat_id,
+      is_from_bot,
+      chat: _chat,
+    } = result
+
+    return chat({
+      id: _chat.id!,
+      remote_chat_id: _chat.remote_chat_id!,
+      created_at: _chat.created_at!,
+      messages: [
+        {
+          id: _id,
+          content,
+          has_answered,
+          created_at,
+          chat_id,
+          is_from_bot,
+        } as IMessageData,
+      ],
+    })
+  }
 }
 
 export { PrismaMessageRepository }
