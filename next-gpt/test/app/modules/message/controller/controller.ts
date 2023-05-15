@@ -1,5 +1,9 @@
 import { MessageController } from "@/app/modules/message/controller"
-import { VALID_IMESSAGE, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
+import {
+  VALID_CHAT,
+  VALID_IMESSAGE,
+  VALID_IMESSAGE_WITHOUT_CHAT,
+} from "@/config/const"
 import { mockMessageService } from "@test/mock/service/message"
 import { resetMocks } from "@test/utils/mock"
 
@@ -30,5 +34,16 @@ describe("[Controller] => Message", () => {
 
     expect(result).toEqual(VALID_IMESSAGE)
     expect(service.selectMessageById).toHaveBeenCalledTimes(1)
+  })
+
+  it("Should be able to a Message by ID with the Chat data", async () => {
+    service.selectMessageByIdWithChat.mockResolvedValue(VALID_CHAT)
+
+    const result = await controller.selectByIdWithChat(VALID_IMESSAGE.id!)
+
+    expect(result).toEqual(VALID_CHAT)
+    expect(result).toHaveProperty("messages")
+
+    expect(service.selectMessageByIdWithChat).toHaveBeenCalledTimes(1)
   })
 })

@@ -12,7 +12,7 @@ export class MessageController {
     return await this.service.selectMessageById(id)
   }
 
-  async selectByIdWithMessage(id: string) {
+  async selectByIdWithChat(id: string) {
     return await this.service.selectMessageByIdWithChat(id)
   }
 }
