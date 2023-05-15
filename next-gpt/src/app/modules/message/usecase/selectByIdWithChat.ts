@@ -1,10 +1,10 @@
 import { PrismaMessageRepository } from "@repository/prisma/message"
 
 class SelectMessageByIdWithChatUseCase {
-  constructor(private prisma: PrismaMessageRepository) {}
+  constructor(private readonly repository: PrismaMessageRepository) {}
 
   async execute(id: string) {
-    return this.prisma.selectByIdWithChat(id)
+    return this.repository.selectByIdWithChat(id)
   }
 }
 
