@@ -30,6 +30,7 @@
       "@Types": ["./src/@types/index.ts"],
       "@Types/*": ["./src/@types/*"],
       "@test/*": ["./test/*"],
+      "@test/mock/repository": ["./test/mock/repository/index.ts"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
