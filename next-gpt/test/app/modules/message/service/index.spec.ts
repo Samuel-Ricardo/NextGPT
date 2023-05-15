@@ -1,6 +1,10 @@
 import { message } from "@modules/message/converter"
 import { MessageService } from "@modules/message/service"
-import { VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
+import {
+  VALID_CHAT,
+  VALID_IMESSAGE,
+  VALID_IMESSAGE_WITHOUT_CHAT,
+} from "@/config/const"
 import {
   mockCreateMessageUseCase,
   mockSelectByIdWithChatUseCase,
@@ -13,7 +17,7 @@ describe("[service] => Message", () => {
   let selectById = mockSelectMessageById()
   let selectByIdWithChat = mockSelectByIdWithChatUseCase()
 
-  let service
+  let service: MessageService
 
   beforeEach(() => {
     resetMocks()
@@ -28,25 +32,39 @@ describe("[service] => Message", () => {
   it("should be able to create a Message", async () => {
     create.execute.mockResolvedValue(message(VALID_IMESSAGE_WITHOUT_CHAT))
 
-    await expect(create.execute(VALID_IMESSAGE_WITHOUT_CHAT)).resolves.toEqual(
-      VALID_IMESSAGE_WITHOUT_CHAT
-    )
+    await expect(
+      service.createMessage(VALID_IMESSAGE_WITHOUT_CHAT)
+    ).resolves.toEqual(VALID_IMESSAGE_WITHOUT_CHAT)
   })
 
   it("should be able to select a Message with id", async () => {
     selectById.execute.mockResolvedValue(message(VALID_IMESSAGE_WITHOUT_CHAT))
 
     await expect(
-      selectById.execute(VALID_IMESSAGE_WITHOUT_CHAT.id)
+      service.selectMessageById(VALID_IMESSAGE_WITHOUT_CHAT.id)
     ).resolves.toEqual(VALID_IMESSAGE_WITHOUT_CHAT)
 
     expect(selectById.execute).toHaveBeenCalledWith(
       VALID_IMESSAGE_WITHOUT_CHAT.id
     )
 
-    const result = await selectById.execute(VALID_IMESSAGE_WITHOUT_CHAT.id)
+    const result = await service.selectMessageById(
+      VALID_IMESSAGE_WITHOUT_CHAT.id
+    )
     expect(result).not.toHaveProperty("chat")
 
     expect(selectById.execute).toHaveBeenCalledTimes(2)
+  })
+
+  it("should be able to select a Message with chat id", async () => {
+    jest.spyOn(selectByIdWithChat, "execute").mockResolvedValue(VALID_CHAT)
+
+    const result = await service.selectMessageByIdWithChat(VALID_IMESSAGE.id!)
+
+    expect(result).toEqual(VALID_CHAT)
+    expect(result).toHaveProperty("messages")
+
+    expect(selectByIdWithChat.execute).toHaveBeenCalledWith(VALID_IMESSAGE.id)
+    expect(selectByIdWithChat.execute).toHaveBeenCalledTimes(1)
   })
 })
