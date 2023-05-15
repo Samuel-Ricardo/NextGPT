@@ -1,4 +1,8 @@
-import { VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
+import {
+  VALID_CHAT,
+  VALID_IMESSAGE,
+  VALID_IMESSAGE_WITHOUT_CHAT,
+} from "@/config/const"
 import {
   SelectMessageByIdUseCase,
   SelectMessageByIdWithChatUseCase,
@@ -32,6 +36,24 @@ describe("Select Message By ID usecases", () => {
       selectById.execute(VALID_IMESSAGE_WITHOUT_CHAT.id)
     ).resolves.toEqual(VALID_IMESSAGE_WITHOUT_CHAT)
 
-    expect(repository.selectById).toBeCalledTimes(1)
+    await expect(
+      selectById.execute(VALID_IMESSAGE_WITHOUT_CHAT.id)
+    ).resolves.not.toHaveProperty("chat")
+
+    expect(repository.selectById).toBeCalledTimes(2)
+  })
+
+  it("should select message by id with chat", async () => {
+    repository.selectByIdWithChat.mockResolvedValue(VALID_CHAT)
+
+    const chat = await selectByIdWithChat.execute(VALID_IMESSAGE.id!)
+
+    expect(chat).toEqual(VALID_CHAT)
+
+    expect(chat).toHaveProperty("messages")
+
+    expect(chat.messages).not.toBeNull()
+
+    expect(repository.selectByIdWithChat).toBeCalledTimes(1)
   })
 })
