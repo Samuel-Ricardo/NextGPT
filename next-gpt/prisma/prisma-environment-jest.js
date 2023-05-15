@@ -58,12 +58,17 @@ class CustomEnvironment extends TestEnvironment {
         host: "localhost",
         user: "root",
         password: "root",
-        port: 3307
+        port: 3307,
+        database
       })
       
       console.log({CONNECTING_TO_DATABASE: this.connectionString})
       
       client.connect()
+      client.on("error", (err) => {
+        console.log({err})
+        client.connect()
+      })
       client.query(`DROP DATABASE ${database}`)
       client.end()
     
