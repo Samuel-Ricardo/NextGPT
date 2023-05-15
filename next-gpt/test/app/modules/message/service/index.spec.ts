@@ -1,11 +1,10 @@
-import { MessageService } from "@/app/modules/message/service"
+import { message } from "@modules/message/converter"
+import { MessageService } from "@modules/message/service"
+import { VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import {
-  createMessageMock,
   mockCreateMessageUseCase,
   mockSelectByIdWithChatUseCase,
   mockSelectMessageById,
-  selectByIdMock,
-  selectByIdWithChatMock,
 } from "@test/mock/usecase/message"
 import { resetMocks } from "@test/utils/mock"
 
@@ -26,7 +25,11 @@ describe("[service] => Message", () => {
     service = new MessageService(create, selectById, selectByIdWithChat)
   })
 
-  it("should be able to create a Message", () => {
-    expect(true).toBe(true)
+  it("should be able to create a Message", async () => {
+    create.execute.mockResolvedValue(message(VALID_IMESSAGE_WITHOUT_CHAT))
+
+    await expect(create.execute(VALID_IMESSAGE_WITHOUT_CHAT)).resolves.toEqual(
+      VALID_IMESSAGE_WITHOUT_CHAT
+    )
   })
 })
