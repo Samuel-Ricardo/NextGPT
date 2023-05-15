@@ -4,6 +4,7 @@ jest.mock("../../../../src/app/modules/message/usecase/selectByIdWithChat")
 
 const selectByIdWithChatMock =
   SelectMessageByIdWithChatUseCase as jest.Mock<SelectMessageByIdWithChatUseCase>
+
 const mockSelectByIdWithChatUseCase = () =>
   new selectByIdWithChatMock() as jest.Mocked<SelectMessageByIdWithChatUseCase>
 
