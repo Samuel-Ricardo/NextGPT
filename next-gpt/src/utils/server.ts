@@ -11,3 +11,18 @@ export function response(
     },
   })
 }
+
+export function writeStream(
+  writter: WritableStreamDefaultWriter,
+  event: Event,
+  data: any
+) {
+  const encoder = new TextEncoder()
+
+  writter.write(encoder.encode(`event: ${event}\n`))
+  writter.write(encoder.encode(`id: ${new Date().getTime()}\n`))
+
+  const streamData = typeof data === "string" ? data : JSON.stringify(data)
+
+  writter.write(encoder.encode(`data: ${streamData}\n\n`))
+}
