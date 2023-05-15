@@ -22,4 +22,13 @@ describe("[Controller] => Message", () => {
     expect(result).toEqual(VALID_IMESSAGE)
     expect(service.createMessage).toHaveBeenCalledTimes(1)
   })
+
+  it("should be able to slect a Messages with ID", async () => {
+    service.selectMessageById.mockResolvedValue(VALID_IMESSAGE)
+
+    const result = await controller.selectById(VALID_IMESSAGE.id!)
+
+    expect(result).toEqual(VALID_IMESSAGE)
+    expect(service.selectMessageById).toHaveBeenCalledTimes(1)
+  })
 })
