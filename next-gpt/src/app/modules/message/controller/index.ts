@@ -1,4 +1,4 @@
-import { ICreateMessageDTO } from "../DTO"
+import { ICreateMessageDTO, IMessageStreamDTO } from "../DTO"
 import { MessageService } from "../service"
 
 export class MessageController {
@@ -14,5 +14,9 @@ export class MessageController {
 
   async selectByIdWithChat(id: string) {
     return await this.service.selectMessageByIdWithChat(id)
+  }
+
+  async stream(data: IMessageStreamDTO) {
+    return await this.service.messageStream(data)
   }
 }
