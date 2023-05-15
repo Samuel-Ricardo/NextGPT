@@ -1,4 +1,5 @@
 import { MessageController } from "@/app/modules/message/controller"
+import { VALID_IMESSAGE, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import { mockMessageService } from "@test/mock/service/message"
 import { resetMocks } from "@test/utils/mock"
 
@@ -13,7 +14,12 @@ describe("[Controller] => Message", () => {
     controller = new MessageController(service)
   })
 
-  it("should be defined", () => {
-    expect(true).toBeTruthy()
+  it("should be able to create a Message", async () => {
+    service.createMessage.mockResolvedValue(VALID_IMESSAGE)
+
+    const result = await controller.create(VALID_IMESSAGE_WITHOUT_CHAT)
+
+    expect(result).toEqual(VALID_IMESSAGE)
+    expect(service.createMessage).toHaveBeenCalledTimes(1)
   })
 })
