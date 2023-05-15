@@ -1,9 +1,18 @@
+import { messageFactory } from "@modules/message/factory"
 import { NextRequest, NextResponse } from "next/server"
+import { getToken } from "next-auth/jwt"
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { messageId: string } }
 ) {
+  const transform = new TransformStream()
+  const writter = transform.writable.getWriter()
+
+  const token = await getToken({ req: request })
+
+  messageFactory().stream({ transform, writter, token })
+
   //select message by id
 
   //if message has answered exit error
