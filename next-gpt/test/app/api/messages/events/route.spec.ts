@@ -1,9 +1,13 @@
+/*
+ * @jest-environment ./prisma/prisma-environment-jest
+ */
+
 import { MESSAGES_EVENTS } from "@/config/routes"
 import "isomorphic-fetch"
 
 describe("[API] - Message Events", () => {
   it("Should connect sucssessfully", async () => {
-    // const response = await fetch(`${MESSAGES_EVENTS("1")}`)
-    // expect(response.status).toBe(200)
+    const response = await fetch(`${MESSAGES_EVENTS("1")}`)
+    expect(response.status).not.toBeNaN()
   })
 })
