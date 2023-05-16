@@ -1,4 +1,4 @@
-import { IError } from "@/@types"
+import { IError } from "@Types"
 import { response, writeStream } from "@/utils/server"
 
 export class UnauthenticatedError extends IError {
@@ -28,6 +28,15 @@ export class AlredyAnsweredMessageError extends IError {
   }
 }
 
+export class MessageFromBotError extends IError {
+  constructor(
+    message?: string | "Message From Bot",
+    public readonly statusCode?: number | 403
+  ) {
+    super(message)
+  }
+}
+
 export const ErrorStreamResponse = ({
   error,
   writter,
@@ -40,7 +49,7 @@ export const ErrorStreamResponse = ({
   setTimeout(async () => {
     writeStream(writter, "error", error.message)
     await writter.close()
-  })
+  }, 2000)
 
   return error instanceof IError
     ? response(transform, error.statusCode)
