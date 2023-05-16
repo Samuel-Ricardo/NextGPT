@@ -13,4 +13,9 @@ describe("[USECASE] - auth check (user)", () => {
     const isValid = check.execute({ sub: "123" } as JWT)
     expect(isValid).toBe(true)
   })
+
+  it("Should return [false] if token is null", async () => {
+    const isValid = check.execute(null)
+    expect(isValid).toBe(false)
+  })
 })
