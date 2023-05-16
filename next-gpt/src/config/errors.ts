@@ -9,3 +9,12 @@ export class UnauthenticatedError extends IError {
     super(message)
   }
 }
+
+export class NotFoundError extends IError {
+  constructor(
+    message?: string | "Data Not Found",
+    public readonly statusCode?: number | 404
+  ) {
+    super(message)
+  }
+}
