@@ -8,6 +8,7 @@ describe("[USECASE] Not Found => user", () => {
   })
 
   it("should undefined if user found ", async () => {
-    expect(true).toBe(true)
+    const error = notFound.execute({ token: { sub: "123" }, user_id: "123" })
+    expect(error).toBeUndefined()
   })
 })
