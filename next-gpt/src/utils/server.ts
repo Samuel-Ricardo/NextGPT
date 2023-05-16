@@ -1,3 +1,5 @@
+import { Event } from "@Types"
+
 export function response(
   responseStream: TransformStream,
   status: number = 200
@@ -26,3 +28,5 @@ export function writeStream(
 
   writter.write(encoder.encode(`data: ${streamData}\n\n`))
 }
+
+export const dynamic = "force-dynamic"
