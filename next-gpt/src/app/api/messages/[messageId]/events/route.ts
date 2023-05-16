@@ -1,7 +1,7 @@
 import { messageFactory } from "@modules/message/factory"
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
-import { lyfeCycleFactory } from "@/app/modules/user/factory/life_cycle"
+import { lyfeCycleFactory } from "@modules/user/factory/life_cycle"
 
 export async function GET(
   request: NextRequest,
@@ -12,46 +12,16 @@ export async function GET(
 
   const token = await getToken({ req: request })
   const messageController = messageFactory()
-  const chat = await messageController.selectByIdWithChat(params.messageId)
 
-  // userservice.isUserAble(...) => authcheck notfound use case
+  const chat = await messageController.selectByIdWithChat(params.messageId)
 
   const isValid = await lyfeCycleFactory().isValid(
     { user_id: chat.user_id, token },
     transform,
     writter
   )
-  if (isValid.status !== 200) return NextResponse.json(isValid)
 
-  messageController.stream({ transform, writter, id: params.messageId })
+  if (isValid.status !== 200) return isValid
 
-  //select message by id
-
-  //if message has answered exit error
-
-  //if message is from bot exit error
-
-  // create & connect with chat service grpc client
-
-  // listen data stream (data)
-
-  // if on end not message received exit error
-
-  /* on end => create message
-   * add message to chat
-   * update answered => true
-   * exit => success + message
-   */
-
-  // return response => stream
-
-  return NextResponse.json({ ok: true })
+  return messageController.stream({ transform, writter, id: params.messageId })
 }
-
-/*
- * fun response
- */
-
-/*
- * fun write stream
- * */
