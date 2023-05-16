@@ -19,6 +19,15 @@ export class NotFoundError extends IError {
   }
 }
 
+export class AlredyAnsweredMessageError extends IError {
+  constructor(
+    message?: string | "Message Already Answered",
+    public readonly statusCode?: number | 403
+  ) {
+    super(message)
+  }
+}
+
 export const ErrorStreamResponse = ({
   error,
   writter,
