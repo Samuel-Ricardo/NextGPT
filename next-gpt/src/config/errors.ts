@@ -18,3 +18,22 @@ export class NotFoundError extends IError {
     super(message)
   }
 }
+
+export const ErrorStreamResponse = ({
+  error,
+  writter,
+  transform,
+}: {
+  error: Error
+  writter: WritableStreamDefaultWriter
+  transform: TransformStream
+}) => {
+  setTimeout(async () => {
+    writeStream(writter, "error", error.message)
+    await writter.close()
+  })
+
+  return error instanceof IError
+    ? response(transform, error.statusCode)
+    : response(transform, 500)
+}
