@@ -1,6 +1,7 @@
 import { messageFactory } from "@modules/message/factory"
 import { NextRequest, NextResponse } from "next/server"
 import { getToken } from "next-auth/jwt"
+import { lyfeCycleFactory } from "@/app/modules/user/factory/life_cycle"
 
 export async function GET(
   request: NextRequest,
@@ -10,8 +11,19 @@ export async function GET(
   const writter = transform.writable.getWriter()
 
   const token = await getToken({ req: request })
+  const messageController = messageFactory()
+  const chat = await messageController.selectByIdWithChat(params.messageId)
 
-  messageFactory().stream({ transform, writter, token })
+  // userservice.isUserAble(...) => authcheck notfound use case
+
+  const isValid = await lyfeCycleFactory().isValid(
+    { user_id: chat.user_id, token },
+    transform,
+    writter
+  )
+  if (isValid.status !== 200) return NextResponse.json(isValid)
+
+  messageController.stream({ transform, writter, id: params.messageId })
 
   //select message by id
 
