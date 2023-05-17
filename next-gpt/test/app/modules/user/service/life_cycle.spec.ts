@@ -20,7 +20,19 @@ describe("[SERVICE] - life cycle => user", () => {
     life_cycle = new UserLifeCycleService(authCheck, notFound)
   })
 
-  it("should be valid user", () => {
-    expect(true).toBe(true)
+  it("should be valid user", async () => {
+    authCheck.execute.mockReturnValueOnce(true)
+    notFound.execute.mockReturnValueOnce(undefined)
+
+    const { result, reason } = await life_cycle.isValidUser({
+      token: { sub: "123" },
+      user_id: "123",
+    })
+
+    expect(result).toBeTruthy()
+    expect(reason).toBeUndefined()
+
+    expect(authCheck.execute).toBeCalledTimes(1)
+    expect(notFound.execute).toBeCalledTimes(1)
   })
 })
