@@ -13,5 +13,22 @@ describe("[Controller] - Life Cycle => User", () => {
     controller = new UserLifeCycleController(service)
   })
 
-  it("isValid", async () => {})
+  it("Should return response with status code 200 when user is valid", async () => {
+    service.isValidUser.mockResolvedValue({ result: true })
+
+    const transform = new TransformStream()
+    const writter = transform.writable.getWriter()
+
+    const result = await controller.isValid(
+      { token: { sub: "123" }, user_id: "123" },
+      transform,
+      writter
+    )
+
+    const data = await result.json()
+
+    console.log({ data })
+
+    expect(result.status).toBe(200)
+  })
 })
