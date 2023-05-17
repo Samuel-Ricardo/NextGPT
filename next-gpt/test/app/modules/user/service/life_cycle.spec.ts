@@ -1,4 +1,5 @@
 import { UserLifeCycleService } from "@/app/modules/user/service/life_cycle"
+import { NotFoundError, UnauthenticatedError } from "@/config/errors"
 import {
   mockAuthCheckUseCase,
   mockUserNotFoundUseCase,
@@ -34,5 +35,21 @@ describe("[SERVICE] - life cycle => user", () => {
 
     expect(authCheck.execute).toBeCalledTimes(1)
     expect(notFound.execute).toBeCalledTimes(1)
+  })
+
+  it("should not be valid user if authCheck fails", async () => {
+    authCheck.execute.mockReturnValueOnce(false)
+    notFound.execute.mockReturnValueOnce(undefined)
+
+    const { result, reason } = await life_cycle.isValidUser({
+      token: {},
+      user_id: "123",
+    })
+
+    expect(result).toBeFalsy()
+    expect(reason).toBeInstanceOf(UnauthenticatedError)
+
+    expect(authCheck.execute).toBeCalledTimes(1)
+    expect(notFound.execute).toBeCalledTimes(0)
   })
 })
