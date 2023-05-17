@@ -52,4 +52,20 @@ describe("[SERVICE] - life cycle => user", () => {
     expect(authCheck.execute).toBeCalledTimes(1)
     expect(notFound.execute).toBeCalledTimes(0)
   })
+
+  it("should not be valid user if not found", async () => {
+    authCheck.execute.mockReturnValueOnce(true)
+    notFound.execute.mockReturnValueOnce(new NotFoundError())
+
+    const { result, reason } = await life_cycle.isValidUser({
+      token: { sub: "123" },
+      user_id: "123",
+    })
+
+    expect(result).toBeFalsy()
+    expect(reason).toBeInstanceOf(NotFoundError)
+
+    expect(authCheck.execute).toBeCalledTimes(1)
+    expect(notFound.execute).toBeCalledTimes(1)
+  })
 })
