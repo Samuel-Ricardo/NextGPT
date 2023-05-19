@@ -1,9 +1,6 @@
 import { Event } from "@Types"
 
-export function response(
-  responseStream: TransformStream,
-  status: number = 200
-) {
+export function response(responseStream: TransformStream, status = 200) {
   return new Response(responseStream.readable, {
     status,
     headers: {
