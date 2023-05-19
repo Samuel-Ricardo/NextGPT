@@ -1,7 +1,7 @@
 import { JWT } from "next-auth/jwt"
 
 export class AuthCheckUseCase {
-  execute(token?: JWT) {
+  execute(token: JWT | null) {
     if (!token) return false
 
     if (!token.sub) return false
@@ -9,3 +9,5 @@ export class AuthCheckUseCase {
     return true
   }
 }
+
+export default AuthCheckUseCase
