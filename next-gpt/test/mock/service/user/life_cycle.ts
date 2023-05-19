@@ -1,7 +1,9 @@
 import { UserLifeCycleService } from "@modules/user/service/life_cycle"
 
-const lifeCycleServiceMock =
+jest.mock("../../../../src/app/modules/user/service/life_cycle")
+
+export const lifeCycleServiceMock =
   UserLifeCycleService as jest.Mock<UserLifeCycleService>
 
-const mockLifeCycleService = () =>
+export const mockLifeCycleService = () =>
   new lifeCycleServiceMock() as jest.Mocked<UserLifeCycleService>
