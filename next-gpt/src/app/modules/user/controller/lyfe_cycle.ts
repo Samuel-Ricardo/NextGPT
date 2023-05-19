@@ -1,16 +1,12 @@
 import { ErrorStreamResponse } from "@/config/errors"
-import { IsValidUserDTO } from "../DTO"
+import { IValidUserDataDTO } from "../DTO"
 import { UserLifeCycleService } from "../service/life_cycle"
 import { response } from "@/utils/server"
 
 export class UserLifeCycleController {
   constructor(private readonly service: UserLifeCycleService) {}
 
-  async isValid(
-    user: IsValidUserDTO,
-    transform: TransformStream,
-    writter: WritableStreamDefaultWriter
-  ): Promise<Response> {
+  async isValid({ user, writter, transform }: IValidUserDataDTO) {
     const result = this.service.isValidUser(user)
 
     if (result.reason)
