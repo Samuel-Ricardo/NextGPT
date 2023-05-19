@@ -10,6 +10,7 @@ const config ={
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   roots: ["<rootDir>/src", "<rootDir>/test"],
   testEnvironment: 'jest-environment-jsdom',
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node', "d.ts"],
   moduleDirectories: ["node_modules", "<rootDir>/src"],
   modulePaths: ["<rootDir>/src"],
   moduleNameMapper: {
@@ -23,7 +24,7 @@ const config ={
   },
   preset: 'ts-jest',
   transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
+    '^.+\\.(ts|tsx|d.ts)?$': 'ts-jest',
   },
   collectCoverage: true,
   coverageDirectory: 'coverage',
