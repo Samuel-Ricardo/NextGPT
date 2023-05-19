@@ -8,7 +8,7 @@ export class UserLifeCycleService {
     private readonly notFound: UserNotFoundUseCase
   ) {}
 
-  async isValidUser({ token, user_id }: IsValidUserDTO) {
+  isValidUser({ token, user_id }: IsValidUserDTO) {
     if (!this.authCheck.execute(token))
       return { result: false, reason: new UnauthenticatedError() }
 
