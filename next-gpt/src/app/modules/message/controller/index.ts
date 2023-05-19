@@ -1,5 +1,7 @@
+import { ErrorStreamResponse } from "@/config/errors"
 import { ICreateMessageDTO, IMessageStreamDTO } from "../DTO"
 import { MessageService } from "../service"
+import { response } from "@/utils/server"
 
 export class MessageController {
   constructor(private service: MessageService) {}
@@ -17,6 +19,15 @@ export class MessageController {
   }
 
   async stream(data: IMessageStreamDTO) {
-    return await this.service.messageStream(data)
+    const result = await this.service.messageStream(data)
+
+    if (result instanceof Error)
+      return ErrorStreamResponse({
+        error: result,
+        transform: data.transform!,
+        writter: data.writter,
+      })
+
+    return response(data.transform!)
   }
 }
