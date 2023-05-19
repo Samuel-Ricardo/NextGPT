@@ -11,7 +11,7 @@ export class UserLifeCycleController {
     transform: TransformStream,
     writter: WritableStreamDefaultWriter
   ): Promise<Response> {
-    const result = await this.service.isValidUser(user)
+    const result = this.service.isValidUser(user)
 
     if (result.reason)
       return ErrorStreamResponse({ error: result.reason, writter, transform })
