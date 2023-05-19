@@ -1,7 +1,3 @@
-/*
- * @jest-environment ./prisma/prisma-environment-jest
- */
-
 import "isomorphic-fetch"
 import { RESPONSE, ROUTES } from "@/config"
 
