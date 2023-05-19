@@ -2,38 +2,41 @@ import { IError } from "@Types"
 import { response, writeStream } from "@/utils/server"
 
 export class UnauthenticatedError extends IError {
-  constructor(
-    message?: string | "User Unauthenticated",
-    public readonly statusCode?: number | 401
-  ) {
-    super(message)
+  constructor(message?: string | "User Unauthenticated", statusCode = 401) {
+    super(message, statusCode)
   }
 }
 
 export class NotFoundError extends IError {
-  constructor(
-    message?: string | "Data Not Found",
-    public readonly statusCode?: number | 404
-  ) {
-    super(message)
+  constructor(message?: string | "Data Not Found", statusCode = 404) {
+    super(message, statusCode)
   }
 }
 
 export class AlredyAnsweredMessageError extends IError {
-  constructor(
-    message?: string | "Message Already Answered",
-    public readonly statusCode?: number | 403
-  ) {
-    super(message)
+  constructor(message?: string | "Message Already Answered", statusCode = 403) {
+    super(message, statusCode)
   }
 }
 
 export class MessageFromBotError extends IError {
+  constructor(message?: string | "Message From Bot", statusCode = 403) {
+    super(message, statusCode)
+  }
+}
+
+export class InvalidMessageError extends IError {
+  constructor(message?: string | "Invalid Message", statusCode = 403) {
+    super(message, statusCode)
+  }
+}
+
+export class NoMessageReceivedError extends IError {
   constructor(
-    message?: string | "Message From Bot",
-    public readonly statusCode?: number | 403
+    message?: string | "No Messsage Received From This Chat",
+    statusCode = 404
   ) {
-    super(message)
+    super(message, statusCode)
   }
 }
 
@@ -47,11 +50,11 @@ export const ErrorStreamResponse = ({
   transform: TransformStream
 }) => {
   setTimeout(async () => {
-    writeStream(writter, "error", error.message)
+    writeStream(writter, "error", error)
     await writter.close()
   }, 2000)
 
   return error instanceof IError
-    ? response(transform, error.statusCode)
+    ? response(transform, error.statusCode!)
     : response(transform, 500)
 }
