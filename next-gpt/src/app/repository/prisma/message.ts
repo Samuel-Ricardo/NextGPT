@@ -1,4 +1,4 @@
-import { IMessageData } from "@/@types"
+import { IMessageData } from "@Types"
 import { chat } from "@modules/chat/converter"
 import { Chat } from "@modules/chat/entity"
 import { message } from "@modules/message/converter"
@@ -11,8 +11,38 @@ class PrismaMessageRepository implements IMessageRepository {
   constructor(private prisma: PrismaClient) {}
 
   async create(data: ICreateMessageDTO): Promise<Message> {
-    const result = await this.prisma.message.create({ data })
-    return message(result)
+    const {
+      chat_id,
+      remote_chat_id,
+      has_answered,
+      is_from_bot,
+      content,
+      answered_message_id,
+    } = data
+
+    const [newMessage] = await this.prisma.$transaction([
+      this.prisma.message.create({
+        data: {
+          content,
+          chat_id,
+          has_answered,
+          is_from_bot,
+        },
+      }),
+
+      this.prisma.chat.update({
+        where: { id: chat_id },
+        data: { remote_chat_id },
+      }),
+
+      this.prisma.message.update({
+        where: { id: answered_message_id },
+        data: { has_answered },
+      }),
+    ])
+
+    //const result = await this.prisma.message.create({ data })
+    return message(newMessage)
   }
 
   async update(data: IUpdateMessageDTO): Promise<Message> {
