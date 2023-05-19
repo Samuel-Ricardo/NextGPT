@@ -2,7 +2,7 @@
  * @jest-environment ./prisma/prisma-environment-jest
  */
 
-import { CHAT, CHAT_MESSAGES } from "@/config/routes"
+import { CHAT_MESSAGES } from "@/config/routes"
 import "isomorphic-fetch"
 
 describe("ROUTES | CHAT_MESSAGES => /api/chat/[chatId]/messages", () => {
