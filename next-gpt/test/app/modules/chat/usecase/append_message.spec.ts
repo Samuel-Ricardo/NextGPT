@@ -28,13 +28,6 @@ describe("[CHAT] - use-case => add: message to: chat", () => {
       VALID_IMESSAGE_WITHOUT_CHAT as Message
     )
 
-    console.log({
-      RESULT: await append.execute({
-        chat_id: VALID_CHAT.id!,
-        message: "Hello World",
-      }),
-    })
-
     await expect(
       append.execute({ chat_id: VALID_CHAT.id!, message: "Hello World" })
     ).resolves.toEqual(VALID_IMESSAGE_WITHOUT_CHAT)

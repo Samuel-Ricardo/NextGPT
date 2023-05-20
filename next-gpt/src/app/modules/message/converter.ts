@@ -17,7 +17,5 @@ export function messages(data: IMessageData[]): IMessage[] {
 
   data.forEach((message_data) => messages.push(message(message_data)))
 
-  console.log({ messages })
-
   return messages
 }

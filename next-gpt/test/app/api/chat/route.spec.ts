@@ -15,8 +15,6 @@ describe("[API] - route: /chat", () => {
 
     const created: { chat: Chat } = await response.json()
 
-    console.log({ created })
-
     expect(response.status).toBe(200)
     expect(created.chat).toHaveProperty("id")
   })

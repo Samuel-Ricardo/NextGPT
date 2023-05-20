@@ -10,8 +10,6 @@ describe("ROUTES | CHAT_MESSAGES => /api/chat/[chatId]/messages", () => {
     const response = await fetch(CHAT_MESSAGES("0"))
     const data = await response.json()
 
-    console.log({ data })
-
     expect(response.status).toBe(200)
     expect(data).toBeInstanceOf(Object)
     expect(data).toHaveProperty("messages")

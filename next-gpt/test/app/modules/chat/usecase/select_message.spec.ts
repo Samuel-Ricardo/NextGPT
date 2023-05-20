@@ -27,11 +27,6 @@ describe("[CHAT] - use-case => select: message from: chat", () => {
       VALID_IMESSAGE,
     ] as Message[])
 
-    console.log({
-      VALID_IMESSAGE,
-      SELECTED: await select.execute({ chat_id: VALID_IMESSAGE.chat_id }),
-    })
-
     await expect(
       select.execute({ chat_id: VALID_IMESSAGE.chat_id })
     ).resolves.toEqual([VALID_IMESSAGE_WITHOUT_CHAT])

@@ -23,8 +23,6 @@ export function writeStream(
 
   if (data instanceof IError) console.error(data)
 
-  console.log({ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: { ...data } })
-
   const streamData = typeof data === "string" ? data : JSON.stringify(data)
 
   writter.write(encoder.encode(`data: ${streamData}\n\n`))
