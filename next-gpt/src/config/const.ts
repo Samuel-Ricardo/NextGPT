@@ -1,5 +1,5 @@
 import { IMessageData } from "@Types/messages"
-import { ICreateChatDTO } from "@/app/modules/chat/DTO"
+import { ICreateChatDTO } from "@modules/chat/DTO"
 import { Chat } from "@modules/chat/entity"
 import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
@@ -15,6 +15,7 @@ export const VALID_MESSAGE_DATA: IMessageData = {
 
 export const VALID_CHAT_DATA: IChat = {
   id: "1",
+  user_id: "123",
   messages: [],
   created_at: new Date(),
   remote_chat_id: "1",
