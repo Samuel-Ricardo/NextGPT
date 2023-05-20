@@ -15,6 +15,7 @@ export class ChatPrismaRepository implements IChatRepository {
   async create(data: ICreateChatDTO): Promise<Chat> {
     const result = await this.prisma.chat.create({
       data: {
+        user_id: "123",
         messages: {
           create: {
             content: data.message,
@@ -30,6 +31,7 @@ export class ChatPrismaRepository implements IChatRepository {
 
     return Chat.from({
       id: result.id,
+      user_id: "123",
       created_at: result.created_at,
       messages: messages(result.messages),
     })
@@ -53,6 +55,7 @@ export class ChatPrismaRepository implements IChatRepository {
     return results.map((result) =>
       Chat.from({
         id: result.id,
+        user_id: "123",
         messages: messages(result.messages),
         created_at: result.created_at,
       })
