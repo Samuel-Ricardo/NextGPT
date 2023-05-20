@@ -1,4 +1,4 @@
-import { Event } from "@Types"
+import { Event, IError } from "@Types"
 
 export function response(responseStream: TransformStream, status = 200) {
   return new Response(responseStream.readable, {
@@ -20,6 +20,10 @@ export function writeStream(
 
   writter.write(encoder.encode(`event: ${event}\n`))
   writter.write(encoder.encode(`id: ${new Date().getTime()}\n`))
+
+  if (data instanceof IError) console.error(data)
+
+  console.log({ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: { ...data } })
 
   const streamData = typeof data === "string" ? data : JSON.stringify(data)
 
