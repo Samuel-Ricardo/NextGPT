@@ -9,7 +9,7 @@ datasource db {
 
 model Chat {
   id             String   @id @default(uuid())
-  user_id        String
+  user_id        String   
   remote_chat_id String?
   created_at     DateTime @default(now())
   messages       Message[]
@@ -17,7 +17,7 @@ model Chat {
 
 model Message {
   id           String   @id @default(uuid())
-  chat_id      String   @unique
+  chat_id      String   
   content      String   @db.Text
   has_answered Boolean  @default(false)
   is_from_bot  Boolean  @default(false)
