@@ -10,18 +10,22 @@ export async function GET(
   const transform = new TransformStream()
   const writter = transform.writable.getWriter()
 
-  const token = await getToken({ req: request })
+  // const token = await getToken({ req: request })
   const messageController = messageFactory()
 
-  const chat = await messageController.selectByIdWithChat(params.messageId)
+  // const chat = await messageController.selectByIdWithChat(params.messageId)
 
-  const isValid = await lyfeCycleFactory().isValid(
-    { user_id: chat.user_id, token },
+  // const isValid = await lyfeCycleFactory().isValid(
+  //   { user_id: chat.user_id, token },
+  //   transform,
+  //   writter
+  // )
+
+  // if (isValid.status !== 200) return isValid
+
+  return await messageController.stream({
     transform,
-    writter
-  )
-
-  if (isValid.status !== 200) return isValid
-
-  return messageController.stream({ transform, writter, id: params.messageId })
+    writter,
+    id: params.messageId,
+  })
 }
