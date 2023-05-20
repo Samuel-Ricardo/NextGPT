@@ -74,7 +74,7 @@ export class MessageService {
         has_answered: true,
 
         remote_chat_id: messageRecived.chatId,
-        answered_message_id: _message.chat_id,
+        answered_message_id: _message.id,
       })
 
       writeStream(writter, "end", newMessage)
