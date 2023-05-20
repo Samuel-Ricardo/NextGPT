@@ -25,11 +25,11 @@ describe("[Controller] - Life Cycle => User", () => {
   it("Should return response with status code 200 when user is valid", async () => {
     service.isValidUser.mockReturnValue({ result: true })
 
-    const result = await controller.isValid(
-      { token: { sub: "123" }, user_id: "123" },
+    const result = await controller.isValid({
+      user: { token: { sub: "123" }, user_id: "123" },
       transform,
-      writter
-    )
+      writter,
+    })
 
     expect(result.status).toBe(200)
     expect(service.isValidUser).toBeCalledTimes(1)
@@ -41,11 +41,11 @@ describe("[Controller] - Life Cycle => User", () => {
       reason: new UnauthenticatedError(),
     })
 
-    const result = await controller.isValid(
-      { token: null, user_id: "123" },
+    const result = await controller.isValid({
+      user: { token: null, user_id: "123" },
       transform,
-      writter
-    )
+      writter,
+    })
 
     expect(service.isValidUser).toBeCalledTimes(1)
     expect(service.isValidUser({ token: null, user_id: "123" })).toEqual({
