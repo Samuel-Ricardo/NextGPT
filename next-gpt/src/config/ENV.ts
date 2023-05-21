@@ -10,6 +10,9 @@ export const ENV = {
       URL: () => process.env.GRCP_SERVICE_URL || "localhost:50052",
     },
   },
+  KEYCLOAK: {
+    CLIENT: () => process.env.KEYCLOAK_CLIENT_SECRET,
+  },
   DOCKER: {
     API: {
       URL: () => process.env.DOCKER_API_URL || "http://app:3000/",
