@@ -94,6 +94,17 @@ services:
       - next_gpt
 
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.0
+    command: start-dev
+    ports:
+      - 9000:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 
 networks:
   next_gpt:
