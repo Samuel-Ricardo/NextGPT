@@ -1,4 +1,9 @@
-import { IAddMessageDTO, ICreateChatDTO, IGetMessagesDTO } from "../DTO"
+import {
+  IAddMessageDTO,
+  ICreateChatDTO,
+  IGetMessagesDTO,
+  ISelectAllChatsDTO,
+} from "../DTO"
 import { ChatService } from "../service"
 
 export class ChatController {
