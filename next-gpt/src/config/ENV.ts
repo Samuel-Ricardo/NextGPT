@@ -11,7 +11,13 @@ export const ENV = {
     },
   },
   KEYCLOAK: {
-    CLIENT: () => process.env.KEYCLOAK_CLIENT_SECRET,
+    CLIENT: {
+      ID: () => process.env.KEYCLOAK_CLIENT_ID,
+      SECRET: () => process.env.KEYCLOAK_CLIENT_SECRET,
+    },
+    ISSUER: () =>
+      process.env.KEYCLOAK_ISSUER ||
+      "http://host.docker.internal:9000/realms/master",
   },
   DOCKER: {
     API: {
