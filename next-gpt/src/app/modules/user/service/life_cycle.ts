@@ -1,11 +1,18 @@
 import { UnauthenticatedError } from "@/config/errors"
 import { IsValidUserDTO } from "../DTO"
-import { AuthCheckUseCase, UserNotFoundUseCase } from "../usecase"
+import {
+  AuthCheckUseCase,
+  GenerateTokenUseCase,
+  UserNotFoundUseCase,
+} from "../usecase"
+import { IGenerateTokenDTO } from "../DTO/generate_token"
+import { ENV } from "@/config"
 
 export class UserLifeCycleService {
   constructor(
     private readonly authCheck: AuthCheckUseCase,
-    private readonly notFound: UserNotFoundUseCase
+    private readonly notFound: UserNotFoundUseCase,
+    private readonly generateToken: GenerateTokenUseCase
   ) {}
 
   isValidUser({ token, user_id }: IsValidUserDTO) {
@@ -17,5 +24,12 @@ export class UserLifeCycleService {
     if (reason) return { result: false, reason }
 
     return { result: true }
+  }
+
+  async tokenFor(user: IGenerateTokenDTO) {
+    return await this.generateToken.excute({
+      user,
+      secret: ENV.NEXT_AUTH.SECRET(),
+    })
   }
 }
