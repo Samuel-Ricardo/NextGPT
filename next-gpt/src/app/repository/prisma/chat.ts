@@ -16,7 +16,7 @@ export class ChatPrismaRepository implements IChatRepository {
   async create(data: ICreateChatDTO): Promise<Chat> {
     const result = await this.prisma.chat.create({
       data: {
-        user_id: "123",
+        user_id: data.user_id,
         messages: {
           create: {
             content: data.message,
