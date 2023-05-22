@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server"
 import {
   IAddMessageDTO,
   ICreateChatDTO,
@@ -5,6 +6,8 @@ import {
   ISelectAllChatsDTO,
 } from "../DTO"
 import { ChatService } from "../service"
+import { NotFoundError } from "@/config/errors"
+import { AUTH } from "@/middleware"
 
 export class ChatController {
   constructor(private service: ChatService) {}
@@ -18,10 +21,19 @@ export class ChatController {
   }
 
   async select(data: IGetMessagesDTO) {
-    return await this.service.selectMessage(data)
+    const error = new NotFoundError()
+    if (data.chat_id !== data.token.sub)
+      return NextResponse.json({ error }, { status: error.statusCode })
+
+    const messages = await this.service.selectMessage(data)
+    return new NextResponse(JSON.stringify({ messages }))
   }
 
   async append(data: IAddMessageDTO) {
-    return await this.service.appendMessage(data)
+    const response = await AUTH(data.request)
+    if (response.break) return NextResponse.json({ error: response.result })
+
+    const message = await this.service.appendMessage(data)
+    return NextResponse.json({ message })
   }
 }
