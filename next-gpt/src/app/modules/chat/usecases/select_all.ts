@@ -5,6 +5,6 @@ export class selectAllChatUseCase {
   constructor(private chatRepository: ChatPrismaRepository) {}
 
   async execute(data: ISelectAllChatsDTO) {
-    return await this.chatRepository.selectAll()
+    return await this.chatRepository.selectAll(data)
   }
 }
