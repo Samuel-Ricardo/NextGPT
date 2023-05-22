@@ -7,6 +7,8 @@ export const AUTH_ROUTE = (handler: RouteHandler) => {
   return async (req: NextRequest, config: Config) => {
     const token = await getToken({ req })
 
+    console.log({ token })
+
     return token
       ? handler(req, token, config)
       : NextResponse.json({ error: new UnauthenticatedError() })
