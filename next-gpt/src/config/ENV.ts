@@ -10,6 +10,9 @@ export const ENV = {
       URL: () => process.env.GRCP_SERVICE_URL || "localhost:50052",
     },
   },
+  NEXT_AUTH: {
+    SECRET: () => process.env.NEXT_AUTH_SECRET || "123",
+  },
   KEYCLOAK: {
     CLIENT: {
       ID: () => process.env.KEYCLOAK_CLIENT_ID,
