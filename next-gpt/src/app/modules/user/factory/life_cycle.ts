@@ -2,7 +2,7 @@ import { UserLifeCycleController } from "../controller/lyfe_cycle"
 import { UserLifeCycleService } from "../service/life_cycle"
 import { AuthCheckUseCase, UserNotFoundUseCase } from "../usecase"
 
-export const lyfeCycleFactory = () => {
+export const lifeCycleFactory = () => {
   const auth_check = new AuthCheckUseCase()
   const not_found = new UserNotFoundUseCase()
 
