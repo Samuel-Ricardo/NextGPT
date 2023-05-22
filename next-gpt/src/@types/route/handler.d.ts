@@ -1,7 +1,7 @@
 import { JWT } from "next-auth/jwt"
 import { NextRequest, NextResponse } from "next/server"
 
-type Config = { params: any }
+export type Config = { params: any }
 
 export type RouteHandler = (
   req: NextRequest,
