@@ -27,7 +27,7 @@ describe("[Chat] - use-case => select all: chat", () => {
 
     prisma_mock.chat.findMany.mockResolvedValue([VALID_CHAT as Chat])
 
-    await expect(usecase.execute()).resolves.toEqual([
+    await expect(usecase.execute({ user_id: "1" })).resolves.toEqual([
       {
         ...VALID_CHAT,
         remote_chat_id: undefined,
