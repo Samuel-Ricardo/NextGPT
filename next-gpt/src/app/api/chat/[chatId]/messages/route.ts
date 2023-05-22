@@ -1,27 +1,30 @@
+import { AUTH_ROUTE } from "@/middleware"
 import { chatFactory } from "@modules/chat/factory"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(
-  _request: NextRequest,
-  { params }: { params: { chatId: string } }
-) {
-  const factory = await chatFactory()
-  const messages = await factory.select({ chat_id: params.chatId })
-
-  return new NextResponse(JSON.stringify({ messages }))
-}
+export const GET = AUTH_ROUTE(
+  async (
+    _request: NextRequest,
+    token,
+    { params }: { params: { chatId: string } }
+  ) => {
+    const factory = await chatFactory()
+    return await factory.select({ chat_id: params.chatId, token })
+  }
+)
 
 export async function POST(
   request: NextRequest,
   { params }: { params: { chatId: string } }
 ) {
   const body = await request.json()
-
   const chat = await chatFactory()
-  const message = await chat.append({
-    chat_id: params.chatId,
-    message: body.message,
-  })
 
-  return NextResponse.json({ message })
+  return NextResponse.json(
+    await chat.append({
+      chat_id: params.chatId,
+      message: body.message,
+      request,
+    })
+  )
 }
