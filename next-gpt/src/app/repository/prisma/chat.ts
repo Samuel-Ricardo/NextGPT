@@ -2,6 +2,7 @@ import {
   IAddMessageDTO,
   ICreateChatDTO,
   IGetMessagesDTO,
+  ISelectAllChatsDTO,
 } from "@modules/chat/DTO"
 import { IChatRepository } from "@modules/chat/repository"
 import { message, messages } from "@modules/message/converter"
@@ -37,8 +38,11 @@ export class ChatPrismaRepository implements IChatRepository {
     })
   }
 
-  async selectAll(): Promise<Chat[]> {
+  async selectAll(data: ISelectAllChatsDTO): Promise<Chat[]> {
     const results = await this.prisma.chat.findMany({
+      where: {
+        user_id: data.user_id,
+      },
       select: {
         id: true,
         messages: {
