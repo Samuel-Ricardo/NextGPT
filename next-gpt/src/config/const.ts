@@ -3,8 +3,14 @@ import { ICreateChatDTO } from "@modules/chat/DTO"
 import { Chat } from "@modules/chat/entity"
 import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
+import { ENV } from "."
 
 const user_id = "123"
+
+export const GENERATE_TOKEN_DATA = {
+  user: { sub: "123", name: "Samuel" },
+  secret: ENV.NEXT_AUTH.SECRET(),
+}
 
 export const VALID_MESSAGE_DATA: IMessageData = {
   id: "1",
