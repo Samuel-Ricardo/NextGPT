@@ -12,3 +12,5 @@ export class GenerateTokenUseCase {
     }
   }
 }
+
+export default GenerateTokenUseCase
