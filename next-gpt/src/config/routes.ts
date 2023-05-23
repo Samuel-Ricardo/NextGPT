@@ -9,3 +9,5 @@ export const CHAT_MESSAGES = (chatId: string) => `${CHAT}/${chatId}/messages`
 
 export const MESSAGES_EVENTS = (messageId: string) =>
   `${BASE}/messages/${messageId}/events`
+
+export const GENERATE_TOKEN = `${BASE}/generate-token`
