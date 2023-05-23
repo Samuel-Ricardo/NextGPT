@@ -5,6 +5,11 @@ import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
 import { ENV } from "."
 
+export const REDIRECT_URL = (redirect: string) =>
+  `${ENV.KEYCLOAK.ISSUER()}/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(
+    redirect
+  )}&client_id=${ENV.KEYCLOAK.CLIENT.ID}`
+
 const user_id = "123"
 
 export const GENERATE_TOKEN_DATA = {
