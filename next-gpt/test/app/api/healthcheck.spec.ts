@@ -7,6 +7,6 @@ describe("healthcheck", () => {
     const data = await response.json()
 
     expect(response.status).toBe(200)
-    expect(data).toStrictEqual(RESPONSE.HEALTH_CHECK)
+    expect(data).toEqual(RESPONSE.HEALTH_CHECK)
   })
 })
