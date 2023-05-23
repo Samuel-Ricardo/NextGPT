@@ -1,6 +1,12 @@
 import { IError } from "@Types"
 import { response, writeStream } from "@/utils/server"
 
+export class MissingRedirectParamsError extends IError {
+  constructor(message?: string | "Missing redirect params", statusCode = 400) {
+    super(message, statusCode)
+  }
+}
+
 export class UnauthenticatedError extends IError {
   constructor(message?: string | "User Unauthenticated", statusCode = 401) {
     super(message, statusCode)
