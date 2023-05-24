@@ -5,6 +5,10 @@ import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
 import { ENV } from "."
 
+export const LOGO = {
+  FULL_CYCLE: "/fullcycle_logo.png",
+}
+
 export const REDIRECT_URL = (redirect: string) =>
   `${ENV.KEYCLOAK.ISSUER()}/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(
     redirect
