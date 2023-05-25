@@ -1,14 +1,15 @@
 import { ENV } from "@config"
 import { IGatewayHTTP } from "."
+import { Axios } from "axios"
 
 export class HTTPGateway implements IGatewayHTTP {
-  API_URL: string
+  constructor(
+    protected readonly API_URL = ENV.API.URL(),
+    protected readonly client = new Axios()
+  ) {}
 
-  constructor(API_URL: string = ENV.API.URL()) {
-    this.API_URL = API_URL
-  }
-  get(path: string): Promise<any> {
-    throw new Error("Method not implemented.")
+  async get(path: string) {
+    return await this.client.get(`${this.API_URL}${path}`)
   }
   post(path: string, body: any): Promise<any> {
     throw new Error("Method not implemented.")
