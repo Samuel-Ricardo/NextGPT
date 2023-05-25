@@ -14,8 +14,8 @@ export class HTTPGateway implements IGatewayHTTP {
   async post(path: string, body: any, config?: AxiosRequestConfig) {
     return await this.client.post(`${this.API_URL}${path}`, body, config)
   }
-  put(path: string, body: any, config?: AxiosRequestConfig): Promise<any> {
-    throw new Error("Method not implemented.")
+  async put(path: string, body: any, config?: AxiosRequestConfig) {
+    return await this.client.put(`${this.API_URL}${path}`, body, config)
   }
   delete(path: string, config?: AxiosRequestConfig): Promise<any> {
     throw new Error("Method not implemented.")
