@@ -1,11 +1,11 @@
 export interface IGatewayHTTP {
-  API_URL: string
+  readonly API_URL: string
 
-  get(path: string): Promise<any>
+  get(path: string, config?: any): Promise<any>
 
-  post(path: string, body: any): Promise<any>
+  post(path: string, body: any, config?: any): Promise<any>
 
-  put(path: string, body: any): Promise<any>
+  put(path: string, body: any, config?: any): Promise<any>
 
-  delete(path: string): Promise<any>
+  delete(path: string, config?: any): Promise<any>
 }
