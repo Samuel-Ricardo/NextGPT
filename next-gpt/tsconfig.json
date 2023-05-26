@@ -34,6 +34,8 @@
       "@test/mock/repository": ["./test/mock/repository/index.ts"],
       "@lib": ["./src/app/lib/index.ts"],
       "@lib/*": ["./src/app/lib/*"],
+      "@gateway": ["./src/app/gateway/index.ts"],
+      "@gateway/*": ["./src/app/gateway/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
