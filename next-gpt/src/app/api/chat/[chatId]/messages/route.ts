@@ -1,3 +1,4 @@
+import { IAppendMessagesBody } from "@/@types/api/chat/append_message"
 import { AUTH_ROUTE } from "@/middleware"
 import { chatFactory } from "@modules/chat/factory"
 import { NextRequest, NextResponse } from "next/server"
@@ -17,7 +18,7 @@ export async function POST(
   request: NextRequest,
   { params }: { params: { chatId: string } }
 ) {
-  const body = await request.json()
+  const body = (await request.json()) as IAppendMessagesBody
   const chat = await chatFactory()
 
   return NextResponse.json(
