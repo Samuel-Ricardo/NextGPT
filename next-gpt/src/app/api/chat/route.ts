@@ -1,9 +1,10 @@
+import { ICreateChatBody } from "@/@types/api/chat"
 import { AUTH, AUTH_ROUTE } from "@/middleware"
 import { chatFactory } from "@modules/chat/factory"
 import { NextRequest, NextResponse } from "next/server"
 
 export const POST = AUTH_ROUTE(async (request: NextRequest, token) => {
-  const body = await request.json()
+  const body = (await request.json()) as ICreateChatBody
 
   const created = await (
     await chatFactory()
