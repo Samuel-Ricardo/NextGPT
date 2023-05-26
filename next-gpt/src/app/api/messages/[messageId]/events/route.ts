@@ -1,7 +1,7 @@
 import { messageFactory } from "@modules/message/factory"
 import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
-import { lyfeCycleFactory } from "@modules/user/factory/life_cycle"
+import { lifeCycleFactory } from "@modules/user/factory/life_cycle"
 
 export async function GET(
   request: NextRequest,
