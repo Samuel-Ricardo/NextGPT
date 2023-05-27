@@ -33,5 +33,23 @@ export default function ChatScreen() {
   const [chatId, setChatId] = useState(chatIdFromParams)
   const [messageId, setMessageId] = useState<string | null | undefined>(null)
 
+  const { data: chats, mutate: mutateChats } = useSWR<Chat[]>(
+    "chats",
+    chatGateway.fetcher,
+    {
+      fallbackData: [],
+      revalidateOnFocus: false,
+    }
+  )
+
+  const { data: messages, mutate: mutateMessages } = useSWR<Message[]>(
+    chatId ? CHAT_MESSAGES(chatId) : null,
+    chatGateway.fetcher,
+    {
+      fallbackData: [],
+      revalidateOnFocus: false,
+    }
+  )
+
   
 }
