@@ -1,4 +1,4 @@
-import { ICreateChatBody } from "@/@types/api/chat"
+import { ICreateChatBody } from "@Types/api/chat"
 import { AUTH, AUTH_ROUTE } from "@/middleware"
 import { chatFactory } from "@modules/chat/factory"
 import { NextRequest, NextResponse } from "next/server"
