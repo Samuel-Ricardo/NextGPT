@@ -145,4 +145,15 @@ export default function ChatScreen() {
     textArea.value = ""
   }
 
+  async function logout() {
+    await signOut({ redirect: false })
+    const { url } = (
+      await userGateway.logout(
+        new URLSearchParams({ redirect: window.location.origin }) + ""
+      )
+    ).data
+    window.location.href = url
+  }
+
+  
 }
