@@ -1,5 +1,5 @@
 export * from "./generic"
-export * from "./grcp"
+export * from "./grcp.ts"
 export * from "./http"
-export * from "./streamable"
+export * from "./streamable.d.ts"
 export * from "./axios"

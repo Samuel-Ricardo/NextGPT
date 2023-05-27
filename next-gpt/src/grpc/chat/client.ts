@@ -8,10 +8,12 @@ export class ChatServiceClient {
 
   constructor(private chatClient: GPRCChatServiceClient) {}
 
-  chatStream(data: { chat_id?: string; user_id: string; message: string }) {
+  chatStream(data: { chat_id?: string; user_id?: string; message: string }) {
     const metadata = new Metadata()
 
     metadata.set("authorization", this.autorization)
+
+    data.user_id = data.user_id ? data.user_id : "123"
 
     const stream = this.chatClient.chatStream(
       {

@@ -1,6 +1,6 @@
 import { MessageIcon } from "@/app/assets/icons"
 import { IChatListProps } from "@Types/props/chat_list"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 export function ChatList({ chats, onItemClick }: IChatListProps) {
   const router = useRouter()

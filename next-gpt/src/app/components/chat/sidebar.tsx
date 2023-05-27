@@ -12,7 +12,7 @@ export function ChatSidebar({
   return (
     <Sidebar>
       <button
-        className="flex- p-3 gap-3 rounded hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-1 border border-white/20"
+        className="flex p-3 gap-3 rounded hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-1 border border-white/20"
         onClick={onNewChatButtonClick}
       >
         <PlusIcon className="w-5 h-5" />

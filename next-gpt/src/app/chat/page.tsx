@@ -9,6 +9,7 @@ import useSWR from "swr"
 import useSWRSubscription from "swr/subscription"
 import { Chat } from "@modules/chat/entity"
 import { Message } from "@modules/message/entity"
+import Image from "next/image"
 import { CHAT_MESSAGES, MESSAGES_EVENTS } from "@/config/routes"
 import { ELEMETNS } from "@/config/const"
 import {
@@ -156,7 +157,22 @@ export default function ChatScreen() {
 
   return (
     <div className={`${styles.main}`}>
-      <div className="overflow-hidden w-full h-full relative flex">
+
+      <div className={styles.center}>
+        <Image
+          className={styles.logo}
+          src="/next.svg"
+          alt="Next.js Logo"
+          width={180}
+          height={37}
+          priority
+        />
+        <div className={styles.thirteen}>
+          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+        </div>
+      </div>
+
+      <div className="overflow-hidden w-full h-[90vh] relative flex rounded-xl shadow-gray-900 shadow-2xl">
         <ChatSidebar
           chats={chats ?? []}
           onLogoutButtonClick={logout}
