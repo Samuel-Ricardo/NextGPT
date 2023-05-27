@@ -1,3 +1,4 @@
+export * from "./messages_render"
 export * from "./props"
 export * from "./chat_list"
 export * from "./chat_sidebar"
