@@ -1,3 +1,4 @@
+export * from "./type_bar"
 export * from "./messages_render"
 export * from "./props"
 export * from "./chat_list"
