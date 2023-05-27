@@ -51,5 +51,34 @@ export default function ChatScreen() {
     }
   )
 
-  
+  const { data: messageLoading, error: messageError } = useSWRSubscription(
+    chatId ? MESSAGES_EVENTS(chatId) : null,
+    (path: string, { next }) => {
+      console.log("[INIT] - Event Source: ", { path })
+
+      const event = messageGateway.stream(path)
+
+      event.addEventListener("message", (event) => {
+        const newMessage = JSON.parse(event.data) as Message
+        next(null, newMessage.content)
+      })
+
+      //@ts-ignore
+      event.addEventListener("error", (event) => next(event.data, null))
+
+      event.addEventListener("end", (event) => {
+        const newMessage = JSON.parse(event.data) as Message
+
+        mutateMessages((messages) => [...messages!, newMessage], false)
+
+        next(null, null)
+      })
+
+      return () => {
+        console.log("[DESTROY] - Event Source: ", { path })
+        event.close()
+      }
+    }
+  )
+
 }
