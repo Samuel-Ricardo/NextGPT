@@ -19,10 +19,10 @@ export const ChatItem = ({ is_from_bot, content, loading }: IChatItemProps) => {
               height={30}
             />
           ) : (
-            <UserIcon className="w-[30px] flex flex-col relative start"/>
+            <UserIcon className="w-[30px] flex flex-col relative start" />
           )}
 
-          <MarkDownRender content={content}/>
+          <MarkDownRender content={content} />
         </div>
 
         {loading && (
