@@ -1,7 +1,8 @@
+import { FormEvent } from "react"
 import { IProps } from "."
 
 export interface ITypeBarProps extends IProps {
-  onSubmit: () => any
-  defaultMessage: string
+  onSubmit: (event: FormEvent<HTMLFormElement>) => any
+  defaultMessage?: string
   messageLoading: any
 }
