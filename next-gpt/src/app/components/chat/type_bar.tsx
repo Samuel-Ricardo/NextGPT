@@ -1,7 +1,6 @@
-import { ELEMETNS } from "@config/const";
+import { ELEMETNS } from "@config/const"
 
 export function TypeBar() {
-
   return (
     <div>
       <div>
