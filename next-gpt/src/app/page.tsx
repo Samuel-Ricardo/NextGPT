@@ -1,10 +1,18 @@
+"use client"
+
 import Image from "next/image"
 import { Inter } from "next/font/google"
 import styles from "./page.module.css"
+import { MIDDLEWARE } from "@/middleware"
+import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ["latin"] })
 
+MIDDLEWARE.BASE()
+
 export default function Home() {
+  const router = useRouter()
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -45,7 +53,26 @@ export default function Home() {
         </div>
       </div>
 
+      <div
+        className={`${styles.code} backdrop-blur-sm bg-slate-200  px-10 rounded text-2xl my-3 `}
+        onClick={() => router.push("/chat")}
+      >
+        Hi! :D
+      </div>
+
       <div className={styles.grid}>
+        <a
+          onClick={() => router.push("/chat")}
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className={inter.className}>
+            Chat With GPT :D<span>-&gt;</span>
+          </h2>
+          <p className={inter.className}>Go to Application!</p>
+        </a>
+
         <a
           href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className={styles.card}
