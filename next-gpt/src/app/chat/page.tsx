@@ -2,9 +2,8 @@
 
 import { FormEvent, useEffect, useLayoutEffect, useState } from "react"
 
-import { useRouter } from "next/router"
 import styles from "../page.module.css"
-import { useSearchParams } from "next/navigation"
+import { useSearchParams, useRouter } from "next/navigation"
 
 import useSWR from "swr"
 import useSWRSubscription from "swr/subscription"
@@ -155,5 +154,26 @@ export default function ChatScreen() {
     window.location.href = url
   }
 
-  
+  return (
+    <div className={`${styles.main}`}>
+      <div className="overflow-hidden w-full h-full relative flex">
+        <ChatSidebar
+          chats={chats ?? []}
+          onLogoutButtonClick={logout}
+          onListItemClick={() => null}
+          onNewChatButtonClick={() => null}
+        />
+
+        <div className="flex-1 flex-col relative">
+          <MessagesRender
+            messages={messages ?? []}
+            loadingMessage={messageLoading}
+            errorLoadingMessage={messageError}
+          />
+
+          <TypeBar messageLoading={messageLoading} onSubmit={onSubmit} />
+        </div>
+      </div>
+    </div>
+  )
 }
