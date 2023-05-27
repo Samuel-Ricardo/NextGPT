@@ -113,5 +113,14 @@ export default function ChatScreen() {
     })
   }, [])
 
+  useLayoutEffect(() => {
+    if (!messageLoading) return
+
+    const chatting = document.querySelector(
+      `#${ELEMETNS.ID.CHATTING}`
+    ) as HTMLUListElement
+    chatting.scrollTop = chatting.scrollHeight
+  }, [messageLoading])
+
   
 }
