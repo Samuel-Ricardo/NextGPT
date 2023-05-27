@@ -5,6 +5,16 @@ import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
 import { ENV } from "."
 
+export const ELEMETNS = {
+  ID: {
+    MESSAGE: "message",
+    TEXT_AREA: "text-area",
+    FORM: "form",
+    SUBMIT: "submit",
+    CHATTING: "chatting",
+  },
+}
+
 export const LOGO = {
   FULL_CYCLE: "/fullcycle_logo.png",
 }
