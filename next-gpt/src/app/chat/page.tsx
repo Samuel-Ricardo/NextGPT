@@ -81,4 +81,37 @@ export default function ChatScreen() {
     }
   )
 
+  useEffect(() => setChatId(chatIdFromParams), [chatIdFromParams])
+
+  useEffect(() => {
+    const textArea = document.querySelector(
+      `#${ELEMETNS.ID.MESSAGE}`
+    ) as HTMLTextAreaElement
+
+    textArea.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) event.preventDefault()
+    })
+
+    textArea.addEventListener("keyup", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        const form = document.querySelector(
+          `#${ELEMETNS.ID.FORM}`
+        ) as HTMLFormElement
+        const submitButton = document.querySelector(
+          `#${ELEMETNS.ID.SUBMIT}`
+        ) as HTMLButtonElement
+
+        return form.requestSubmit(submitButton)
+      }
+
+      if (textArea.scrollHeight >= 200)
+        return (textArea.style.overflowY = "scroll")
+
+      textArea.style.overflowY = "hidden"
+      textArea.style.height = "auto"
+      textArea.style.height = textArea.scrollHeight + "px"
+    })
+  }, [])
+
+  
 }
