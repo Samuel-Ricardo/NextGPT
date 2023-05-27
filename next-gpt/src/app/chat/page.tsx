@@ -122,5 +122,27 @@ export default function ChatScreen() {
     chatting.scrollTop = chatting.scrollHeight
   }, [messageLoading])
 
-  
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const textArea = event.currentTarget.querySelector(
+      `#${ELEMETNS.ID.TEXT_AREA}`
+    ) as HTMLTextAreaElement
+    const message = textArea.value
+
+    if (!chatId) {
+      const newChat: Chat = (await chatGateway.create(message)).data.chat
+
+      mutateChats([newChat, ...chats!], false)
+      setChatId(newChat.id!)
+      setMessageId(newChat!.messages![0].id)
+    } else {
+      const newMessage: Message = (
+        await chatGateway.appendMessage(chatId, { message })
+      ).data.message
+      setMessageId(newMessage.id)
+    }
+    textArea.value = ""
+  }
+
 }
