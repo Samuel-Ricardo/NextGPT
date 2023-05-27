@@ -1,8 +1,9 @@
 import { ENV } from "@config"
 import { IGatewayHTTP } from ".."
 import { Axios, AxiosRequestConfig } from "axios"
+import { ISWRSupport } from "../support/swr"
 
-export class HTTPGateway implements IGatewayHTTP {
+export class HTTPGateway implements IGatewayHTTP, ISWRSupport {
   constructor(
     public readonly API_URL = ENV.API.URL(),
     protected readonly client = new Axios()
@@ -19,5 +20,10 @@ export class HTTPGateway implements IGatewayHTTP {
   }
   async delete(path: string, config?: AxiosRequestConfig) {
     return await this.client.delete(`${this.API_URL}${path}`, config)
+  }
+
+  async fetcher(path: string) {
+    const result = await this.get(path)
+    return result.data
   }
 }
