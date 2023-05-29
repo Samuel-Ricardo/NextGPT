@@ -1,12 +1,11 @@
-import { ENV } from "@config"
 import { IGatewayHTTP } from ".."
-import { Axios, AxiosRequestConfig } from "axios"
+import axios, { Axios, AxiosRequestConfig } from "axios"
 import { ISWRSupport } from "../support/swr"
 
 export class HTTPGateway implements IGatewayHTTP, ISWRSupport {
   constructor(
-    public readonly API_URL = ENV.API.URL(),
-    protected readonly client = new Axios()
+    public readonly API_URL = "",
+    protected readonly client = axios
   ) {}
 
   async get(path: string, config?: AxiosRequestConfig) {

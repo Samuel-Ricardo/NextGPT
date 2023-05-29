@@ -5,7 +5,7 @@ import { ISWRSupport } from "../support/swr"
 
 export class GatewayGRCP implements IGRCPGateway, ISWRSupport {
   constructor(
-    public readonly API_URL = ENV.API.URL(),
+    public readonly API_URL = "",
     protected readonly client = new Axios()
   ) {}
 
