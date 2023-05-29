@@ -86,6 +86,7 @@ class PrismaMessageRepository implements IMessageRepository {
 
     return chat({
       id: _chat.id!,
+      user_id: _chat.user_id!,
       remote_chat_id: _chat.remote_chat_id!,
       created_at: _chat.created_at!,
       messages: [
