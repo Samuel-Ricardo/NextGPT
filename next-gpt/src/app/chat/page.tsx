@@ -19,11 +19,15 @@ import {
 } from "@gateway"
 import { signOut } from "next-auth/react"
 import { ChatSidebar, MessagesRender, TypeBar } from "../components/chat"
+import {
+  axiosMessageGatewayFactory,
+  axiosUserGatewayFactory,
+} from "@gateway/axios/factory"
 
 export default function ChatScreen() {
   const chatGateway = new AxiosChatGateway()
-  const messageGateway = new AxiosMessageGateway()
-  const userGateway = new AxiosUserGateway()
+  const messageGateway = axiosMessageGatewayFactory()
+  const userGateway = axiosUserGatewayFactory()
 
   const route = useRouter()
   const searchParams = useSearchParams()
@@ -94,12 +98,8 @@ export default function ChatScreen() {
 
     textArea.addEventListener("keyup", (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
-        const form = document.querySelector(
-          `#${ELEMETNS.ID.FORM}`
-        ) as HTMLFormElement
-        const submitButton = document.querySelector(
-          `#${ELEMETNS.ID.SUBMIT}`
-        ) as HTMLButtonElement
+        const form = document.getElementById(`${ELEMETNS.ID.FORM}`) as HTMLFormElement
+        const submitButton = document.getElementById(ELEMETNS.ID.SUBMIT) as HTMLButtonElement
 
         return form.requestSubmit(submitButton)
       }
@@ -126,7 +126,7 @@ export default function ChatScreen() {
     event.preventDefault()
 
     const textArea = event.currentTarget.querySelector(
-      `#${ELEMETNS.ID.TEXT_AREA}`
+      `#${ELEMETNS.ID.MESSAGE}`
     ) as HTMLTextAreaElement
     const message = textArea.value
 
@@ -157,7 +157,6 @@ export default function ChatScreen() {
 
   return (
     <div className={`${styles.main}`}>
-
       <div className={styles.center}>
         <Image
           className={styles.logo}
