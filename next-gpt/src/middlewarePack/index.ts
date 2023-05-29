@@ -1,4 +1,4 @@
 export * from "./base"
 export * from "./auth"
 
-export * as MIDDLEWARE from "./"
+export * as MIDDLEWARE from "."
