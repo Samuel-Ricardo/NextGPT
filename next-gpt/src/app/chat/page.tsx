@@ -56,7 +56,7 @@ export default function ChatScreen() {
   )
 
   const { data: messageLoading, error: messageError } = useSWRSubscription(
-    chatId ? MESSAGES_EVENTS(chatId) : null,
+    messageId ? MESSAGES_EVENTS(messageId) : null,
     (path: string, { next }) => {
       console.log("[INIT] - Event Source: ", { path })
 
@@ -137,6 +137,8 @@ export default function ChatScreen() {
     if (!chatId) {
       const newChat: Chat = (await chatGateway.create(message)).data.chat
 
+      console.log({ newChat })
+
       mutateChats([newChat, ...chats!], false)
       setChatId(newChat.id!)
       setMessageId(newChat!.messages![0].id)
@@ -144,6 +146,9 @@ export default function ChatScreen() {
       const newMessage: Message = (
         await chatGateway.appendMessage(chatId, { message })
       ).data.message
+
+      console.log({ newMessage })
+
       setMessageId(newMessage.id)
     }
     textArea.value = ""
