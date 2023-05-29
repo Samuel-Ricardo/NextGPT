@@ -98,8 +98,12 @@ export default function ChatScreen() {
 
     textArea.addEventListener("keyup", (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
-        const form = document.getElementById(`${ELEMETNS.ID.FORM}`) as HTMLFormElement
-        const submitButton = document.getElementById(ELEMETNS.ID.SUBMIT) as HTMLButtonElement
+        const form = document.getElementById(
+          `${ELEMETNS.ID.FORM}`
+        ) as HTMLFormElement
+        const submitButton = document.getElementById(
+          ELEMETNS.ID.SUBMIT
+        ) as HTMLButtonElement
 
         return form.requestSubmit(submitButton)
       }
