@@ -13,8 +13,8 @@ export function TypeBar({
   return (
     <div className="absolute bottom-0 w-full !bg-transparent bg-gradient-to-b from-gray-800 to-gray-950">
       <div className="mb-6 mx-auto max-w-3xl">
-        <form id={`${ELEMETNS.ID.FORM}}`} onSubmit={onSubmit}>
-          <div className="flex flex-col py-3 pl-4 relative text-white bg-gray-700 rounded">
+        <form id={ELEMETNS.ID.FORM} onSubmit={onSubmit}>
+          <div className="flex flex-col py-3 pl-4 relative text-white bg-gray-700 rounded-2xl opacity-80">
             <textarea
               id={ELEMETNS.ID.MESSAGE}
               tabIndex={0}
