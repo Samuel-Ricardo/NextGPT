@@ -7,7 +7,7 @@ import {
 } from "../DTO"
 import { ChatService } from "../service"
 import { NotFoundError } from "@/config/errors"
-import { AUTH } from "@/middleware"
+import { AUTH } from "@/middlewarePack"
 
 export class ChatController {
   constructor(private service: ChatService) {}
