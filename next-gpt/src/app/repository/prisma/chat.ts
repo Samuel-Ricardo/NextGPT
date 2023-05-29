@@ -26,13 +26,14 @@ export class ChatPrismaRepository implements IChatRepository {
       select: {
         id: true,
         messages: true,
+        user_id: true,
         created_at: true,
       },
     })
 
     return Chat.from({
       id: result.id,
-      user_id: "123",
+      user_id: result.user_id,
       created_at: result.created_at,
       messages: messages(result.messages),
     })
@@ -49,6 +50,7 @@ export class ChatPrismaRepository implements IChatRepository {
           orderBy: { created_at: "asc" },
           take: 1,
         },
+        user_id: true,
         created_at: true,
       },
       orderBy: {
@@ -59,7 +61,7 @@ export class ChatPrismaRepository implements IChatRepository {
     return results.map((result) =>
       Chat.from({
         id: result.id,
-        user_id: "123",
+        user_id: result.user_id,
         messages: messages(result.messages),
         created_at: result.created_at,
       })
