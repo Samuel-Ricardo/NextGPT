@@ -16,6 +16,8 @@ export const AUTH_ROUTE = (handler: RouteHandler) => {
 }
 
 export const AUTH: Middleware = async (req?: Request) => {
+  console.log({ AUTH_REQ: req as NextRequest })
+
   const token = await getToken({ req: req as NextRequest })
 
   return token
