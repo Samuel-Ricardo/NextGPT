@@ -1,5 +1,5 @@
 import { IAppendMessagesBody } from "@/@types/api/chat/append_message"
-import { AUTH_ROUTE } from "@/middleware"
+import { AUTH_ROUTE } from "@/middlewarePack"
 import { chatFactory } from "@modules/chat/factory"
 import { NextRequest, NextResponse } from "next/server"
 

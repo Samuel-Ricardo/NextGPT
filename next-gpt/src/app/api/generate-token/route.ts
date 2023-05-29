@@ -1,5 +1,5 @@
 import { lifeCycleFactory } from "@modules/user/factory/life_cycle"
-import { AUTH_ROUTE } from "@/middleware"
+import { AUTH_ROUTE } from "@/middlewarePack"
 
 export const POST = AUTH_ROUTE(async (req) => {
   const body = await req.json()
