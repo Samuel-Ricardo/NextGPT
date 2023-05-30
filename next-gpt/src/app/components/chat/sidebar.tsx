@@ -22,7 +22,7 @@ export function ChatSidebar({
       <ChatList chats={chats} onItemClick={onListItemClick} />
 
       <button
-        className="flax p3 mt-1 gap3 rounded hover:bg-gray-500/10 text-sm text-white"
+        className="flex min-h-max min-w-max p-3  mt-1 gap-3 rounded hover:bg-gray-500/10 text-sm text-white transition-colors"
         onClick={onLogoutButtonClick}
       >
         <LogoutIcon className="h-5 w-5" />
