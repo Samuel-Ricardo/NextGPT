@@ -12,11 +12,7 @@ import { Message } from "@modules/message/entity"
 import Image from "next/image"
 import { CHAT_MESSAGES, MESSAGES_EVENTS } from "@/config/routes"
 import { ELEMETNS } from "@/config/const"
-import {
-  AxiosChatGateway,
-  AxiosMessageGateway,
-  AxiosUserGateway,
-} from "@gateway"
+import { AxiosChatGateway } from "@gateway"
 import { signOut } from "next-auth/react"
 import { ChatSidebar, MessagesRender, TypeBar } from "../components/chat"
 import {
@@ -29,7 +25,7 @@ export default function ChatScreen() {
   const messageGateway = axiosMessageGatewayFactory()
   const userGateway = axiosUserGatewayFactory()
 
-  const route = useRouter()
+  const router = useRouter()
   const searchParams = useSearchParams()
 
   const chatIdFromParams = searchParams.get("id")
@@ -73,8 +69,14 @@ export default function ChatScreen() {
       event.addEventListener("end", (event) => {
         const newMessage = JSON.parse(event.data) as Message
 
-        mutateMessages((messages) => [...messages!, newMessage], false)
+        if (!newMessage) next(null, null)
+        if (!messages) next(null, null)
 
+        const newMessages = [...messages!, newMessage]
+
+        mutateMessages((messages) => newMessages, false)
+
+        console.log("[END] - Event Source: ", { newMessage, messages })
         next(null, null)
       })
 
@@ -134,6 +136,8 @@ export default function ChatScreen() {
     ) as HTMLTextAreaElement
     const message = textArea.value
 
+    console.log({ chatId, message })
+
     if (!chatId) {
       const newChat: Chat = (await chatGateway.create(message)).data.chat
 
@@ -145,7 +149,7 @@ export default function ChatScreen() {
     } else {
       const newMessage: Message = (
         await chatGateway.appendMessage(chatId, { message })
-      ).data.message
+      ).data.message //stop-here
 
       console.log({ newMessage })
 
@@ -162,6 +166,12 @@ export default function ChatScreen() {
       )
     ).data
     window.location.href = url
+  }
+
+  const onNewChatClick = () => {
+    router.push("/chat")
+    setChatId(null)
+    setMessageId(null)
   }
 
   return (
@@ -184,8 +194,8 @@ export default function ChatScreen() {
         <ChatSidebar
           chats={chats ?? []}
           onLogoutButtonClick={logout}
-          onListItemClick={() => null}
-          onNewChatButtonClick={() => null}
+          onListItemClick={(chat) => router.push(`/chat/?id=${chat.id}`)}
+          onNewChatButtonClick={onNewChatClick}
         />
 
         <div className="flex-1 flex-col relative">
