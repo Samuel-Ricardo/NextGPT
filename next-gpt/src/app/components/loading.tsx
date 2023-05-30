@@ -1,3 +1,3 @@
 export const Loading = () => (
-  <span className="animate-pulse bg-gray-50 h-6 w-[5px] rounded"></span>
+  <span className="animate-pulse animate-spin bg-gray-50 h-7 w-[8px] rounded"></span>
 )
