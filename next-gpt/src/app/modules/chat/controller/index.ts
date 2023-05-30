@@ -37,3 +37,5 @@ export class ChatController {
     return NextResponse.json({ message })
   }
 }
+
+export * from "./view"
