@@ -21,11 +21,9 @@ export async function POST(
   const body = (await request.json()) as IAppendMessagesBody
   const chat = await chatFactory()
 
-  return NextResponse.json(
-    await chat.append({
-      chat_id: params.chatId,
-      message: body.message,
-      request,
-    })
-  )
+  return await chat.append({
+    chat_id: params.chatId,
+    message: body.message,
+    request,
+  })
 }
