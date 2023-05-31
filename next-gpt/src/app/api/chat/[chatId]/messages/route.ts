@@ -10,14 +10,7 @@ export const GET = AUTH_ROUTE(
     { params }: { params: { chatId: string } }
   ) => {
     const factory = await chatFactory()
-
-    const chat = await factory.select({ chat_id: params.chatId })
-
-    return await factory.selectMessages({
-      user_id: chat.user_id,
-      token,
-      chat_id: chat.id!,
-    })
+    return await factory.select({ chat_id: params.chatId, token })
   }
 )
 
