@@ -1,10 +1,10 @@
 import { IChatGateway } from "@modules/chat/gateway"
 import { HTTPGateway } from ".."
 import { CHAT, CHAT_MESSAGES } from "@config/routes"
-import { IAppendMessagesBody } from "@/@types/api/chat"
+import { IAppendMessagesBody } from "@Types/api/chat"
 import { Chat } from "@modules/chat/entity"
 import { Message } from "@modules/message/entity"
-import { AxiosResponse } from "axios"
+import axios, { AxiosResponse } from "axios"
 
 export class AxiosChatGateway extends HTTPGateway implements IChatGateway {
   async create(message: string) {
@@ -25,5 +25,9 @@ export class AxiosChatGateway extends HTTPGateway implements IChatGateway {
     return (await this.post(CHAT_MESSAGES(id), { message })) as AxiosResponse<{
       message: Message
     }>
+  }
+
+  async fetcher(path: string): Promise<any> {
+    return (await axios.get(path)).data.chat
   }
 }
