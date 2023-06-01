@@ -10,7 +10,7 @@ import useSWRSubscription from "swr/subscription"
 import { Chat } from "@modules/chat/entity"
 import { Message } from "@modules/message/entity"
 import Image from "next/image"
-import { CHAT_MESSAGES, MESSAGES_EVENTS } from "@/config/routes"
+import { CHAT, CHAT_MESSAGES, MESSAGES_EVENTS } from "@/config/routes"
 import { ELEMETNS } from "@/config/const"
 import { AxiosChatGateway } from "@gateway"
 import { signOut } from "next-auth/react"
@@ -34,7 +34,7 @@ export default function ChatScreen() {
   const [messageId, setMessageId] = useState<string | null | undefined>(null)
 
   const { data: chats, mutate: mutateChats } = useSWR<Chat[]>(
-    "chats",
+    CHAT,
     chatGateway.fetcher,
     {
       fallbackData: [],
@@ -44,7 +44,7 @@ export default function ChatScreen() {
 
   const { data: messages, mutate: mutateMessages } = useSWR<Message[]>(
     chatId ? CHAT_MESSAGES(chatId) : null,
-    chatGateway.fetcher,
+    messageGateway.fetcher,
     {
       fallbackData: [],
       revalidateOnFocus: false,
@@ -72,9 +72,9 @@ export default function ChatScreen() {
         if (!newMessage) next(null, null)
         if (!messages) next(null, null)
 
-        const newMessages = [...messages!, newMessage]
+        console.log({ messages })
 
-        mutateMessages((messages) => newMessages, false)
+        mutateMessages((messages) => [...messages!, newMessage], false)
 
         console.log("[END] - Event Source: ", { newMessage, messages })
         next(null, null)
@@ -149,7 +149,7 @@ export default function ChatScreen() {
     } else {
       const newMessage: Message = (
         await chatGateway.appendMessage(chatId, { message })
-      ).data.message //stop-here
+      ).data.message
 
       console.log({ newMessage })
 
