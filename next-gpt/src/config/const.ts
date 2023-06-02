@@ -20,9 +20,9 @@ export const LOGO = {
 }
 
 export const REDIRECT_URL = (redirect: string) =>
-  `${ENV.KEYCLOAK.ISSUER()}/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(
+  `${ENV.DOCKER.KEYCLOAK.ISSUER()}/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(
     redirect
-  )}&client_id=${ENV.KEYCLOAK.CLIENT.ID}`
+  )}&client_id=${ENV.KEYCLOAK.CLIENT.ID()}`
 
 const user_id = "123"
 
