@@ -1,12 +1,14 @@
 import {
   AppendMessageUseCase,
   CreateChatUseCase,
+  SelectChatByIdUseCase,
   SelectMessageUseCase,
   selectAllChatUseCase,
 } from "@modules/chat/usecases"
 import { VALID_CHAT, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import { ChatService } from "@modules/chat/service"
 import { resetMocks } from "@test/utils/mock"
+import { mockUsecaseSelectChatById } from "@test/mock/usecase/chat"
 
 describe("Service -> Chat", () => {
   jest.mock("../../../../../src/app/modules/chat/usecases/index")
@@ -20,6 +22,7 @@ describe("Service -> Chat", () => {
   let selectAll: jest.Mocked<selectAllChatUseCase>
   let select: jest.Mocked<SelectMessageUseCase>
   let append: jest.Mocked<AppendMessageUseCase>
+  let selectChatById: jest.Mocked<SelectChatByIdUseCase>
 
   let service: ChatService
 
@@ -30,8 +33,9 @@ describe("Service -> Chat", () => {
     selectAll = new selectAllMock() as jest.Mocked<selectAllChatUseCase>
     select = new selectMock() as jest.Mocked<SelectMessageUseCase>
     append = new appendMock() as jest.Mocked<AppendMessageUseCase>
+    selectChatById = mockUsecaseSelectChatById()
 
-    service = new ChatService(create, selectAll, select, append)
+    service = new ChatService(create, selectAll, select, append, selectChatById)
   })
 
   it("Should create a Chat successfully", async () => {
