@@ -7,8 +7,6 @@ import Image from "next/image"
 export const ChatItem = ({ is_from_bot, content, loading }: IChatItemProps) => {
   const background = is_from_bot ? "bg-gray-900" : "bg-gray-600"
 
-  console.log({ is_from_bot })
-
   return (
     <li
       className={`min-w-max w-2/3 p-2 text-gray-100 ${background} rounded m-5 ml-auto mr-auto`}
