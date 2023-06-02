@@ -7,7 +7,7 @@ export const AUTH_ROUTE = (handler: RouteHandler) => {
   return async (req: NextRequest, config: Config) => {
     const token = await getToken({ req })
 
-    console.log({ token })
+    console.log({ token, config })
 
     return token
       ? handler(req, token, config)
