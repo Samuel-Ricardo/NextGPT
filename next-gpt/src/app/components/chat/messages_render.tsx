@@ -8,7 +8,6 @@ export function MessagesRender({
   loadingMessage,
   errorLoadingMessage,
 }: IMessagesRenderProps) {
-  
   return (
     <div className="h-full w-full overflow-y-auto bg-gray-800 p-3">
       <ul
