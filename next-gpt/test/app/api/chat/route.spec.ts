@@ -2,34 +2,33 @@
  * @jest-environment ./prisma/prisma-environment-jest
  */
 
-//import { GenerateTokenUseCase } from "@/app/modules/user/usecase"
-//import { ROUTES } from "@/config"
-//import { GENERATE_TOKEN_DATA } from "@/config/const"
-//import { Chat } from "@prisma/client"
-//import "isomorphic-fetch"
+import { ROUTES } from "@/config"
+// import { GENERATE_TOKEN_DATA } from "@/config/const"
+// import { Chat } from "@prisma/client"
+// import axios from "axios"
+import "isomorphic-fetch"
 
 describe("[API] - route: /chat", () => {
-  // let generateToken: GenerateTokenUseCase
+  it("[POST] - /chat | Should connect successfully but return unauthenticated error", async () => {
+    const CSRF = await (await fetch(ROUTES.BASE + "/auth/csrf")).json()
 
-  // beforeEach( () => generateToken = new GenerateTokenUseCase())
+    const response = await fetch(ROUTES.CHAT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `next-auth.csrf-token=${CSRF}`,
+      },
+      body: JSON.stringify({ message: "Hello World" }),
+    })
 
-  it("[POST] - /chat", async () => {
-    // const response = await fetch(ROUTES.CHAT, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${await generateToken.excute(GENERATE_TOKEN_DATA)}`,
-    //   },
-    //   body: JSON.stringify({ message: "Hello World" }),
-    // })
+    //console.log({AAAAAA: await axios.post("/api/auth/signin/keycloak")})
+    //const response = await axios.post(ROUTES.CHAT, { message: "Hello World" })
 
-    // const created: { chat: Chat } = await response.json()
+    const created = await response.json()
 
-    // console.log({ created })
+    console.log({ created })
 
-    // expect(response.status).toBe(200)
-    // expect(created.chat).toHaveProperty("id")
-
-    expect(true).toBe(true)
+    expect(response.status).toBe(200)
+    expect(created.error.statusCode).toBe(401)
   })
 })
