@@ -11,5 +11,5 @@ export function axiosMessageGatewayFactory() {
 }
 
 export function axiosUserGatewayFactory() {
-  return new AxiosUserGateway(ENV.API.URL(), axios)
+  return new AxiosUserGateway("", axios)
 }
