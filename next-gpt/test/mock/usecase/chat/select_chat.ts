@@ -2,7 +2,7 @@ import { SelectChatByIdUseCase } from "@modules/chat/usecases"
 import { IChatRepository } from "@modules/chat/repository"
 import { getChatUsecasePath } from "."
 
-jest.mock(getChatUsecasePath("select_chat"))
+jest.mock("../../../../src/app/modules/chat/usecases/select_chat")
 
 export const selectChatByIdUsecaseMock =
   SelectChatByIdUseCase as jest.Mock<SelectChatByIdUseCase>

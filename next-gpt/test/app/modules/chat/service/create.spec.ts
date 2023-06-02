@@ -9,6 +9,7 @@ import { VALID_CHAT, VALID_IMESSAGE_WITHOUT_CHAT } from "@/config/const"
 import { ChatService } from "@modules/chat/service"
 import { resetMocks } from "@test/utils/mock"
 import { mockUsecaseSelectChatById } from "@test/mock/usecase/chat"
+import { NextRequest } from "next/server"
 
 describe("Service -> Chat", () => {
   jest.mock("../../../../../src/app/modules/chat/usecases/index")
@@ -45,7 +46,7 @@ describe("Service -> Chat", () => {
     })
 
     await expect(
-      service.createChat({ message: "Hello World" })
+      service.createChat({ message: "Hello World", user_id: "123" })
     ).resolves.toStrictEqual({
       ...VALID_CHAT,
       remote_chat_id: undefined,
@@ -57,7 +58,9 @@ describe("Service -> Chat", () => {
   it("Should select all Chats successfully", async () => {
     jest.spyOn(selectAll, "execute").mockResolvedValue([VALID_CHAT])
 
-    await expect(service.selectAllChats()).resolves.toStrictEqual([VALID_CHAT])
+    await expect(
+      service.selectAllChats({ user_id: "123" })
+    ).resolves.toStrictEqual([VALID_CHAT])
     expect(selectAll.execute).toHaveBeenCalledTimes(1)
   })
 
@@ -67,7 +70,11 @@ describe("Service -> Chat", () => {
       .mockResolvedValue([VALID_IMESSAGE_WITHOUT_CHAT])
 
     await expect(
-      service.selectMessages({ chat_id: VALID_CHAT.id! })
+      service.selectMessages({
+        chat_id: VALID_CHAT.id!,
+        user_id: "123",
+        token: {},
+      })
     ).resolves.toStrictEqual([VALID_IMESSAGE_WITHOUT_CHAT])
 
     expect(select.execute).toHaveBeenCalledTimes(1)
@@ -80,6 +87,7 @@ describe("Service -> Chat", () => {
       service.appendMessage({
         chat_id: VALID_CHAT.id!,
         message: VALID_IMESSAGE_WITHOUT_CHAT.content,
+        request: {} as NextRequest,
       })
     ).resolves.toStrictEqual(VALID_IMESSAGE_WITHOUT_CHAT)
 
