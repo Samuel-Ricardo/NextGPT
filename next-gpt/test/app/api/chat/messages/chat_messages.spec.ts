@@ -42,7 +42,13 @@ describe("ROUTES | CHAT_MESSAGES => /api/chat/[chatId]/messages", () => {
   //   */
   //   })
 
-  it("true", () => expect(true).toBe(true))
+  it("Should connect successfully but return unauthenticated", async () => {
+    const response = await fetch(CHAT_MESSAGES("1"))
+    const data = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(data.error).toEqual({ statusCode: 401 })
+  })
 })
 
 // E2E
