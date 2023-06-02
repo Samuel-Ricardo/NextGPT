@@ -6,16 +6,24 @@ import { prisma } from "@prisma"
 import { selectAllChatUseCase } from "./usecases/select_all"
 import { AppendMessageUseCase } from "./usecases/append_message"
 import { SelectMessageUseCase } from "./usecases/select_message"
+import { SelectChatByIdUseCase } from "./usecases"
 
 export async function chatFactory() {
   const repository = new ChatPrismaRepository(prisma)
 
   const create = new CreateChatUseCase(repository)
+  const select = new SelectChatByIdUseCase(repository)
   const selectAll = new selectAllChatUseCase(repository)
-  const select = new SelectMessageUseCase(repository)
+  const selectMessages = new SelectMessageUseCase(repository)
   const append = new AppendMessageUseCase(repository)
 
-  const service = new ChatService(create, selectAll, select, append)
+  const service = new ChatService(
+    create,
+    selectAll,
+    selectMessages,
+    append,
+    select
+  )
   const controller = new ChatController(service)
 
   return controller
