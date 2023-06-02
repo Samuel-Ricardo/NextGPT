@@ -1,5 +1,5 @@
 import { IGatewayHTTP } from ".."
-import axios, { Axios, AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 import { ISWRSupport } from "../support/swr"
 
 export class HTTPGateway implements IGatewayHTTP, ISWRSupport {
@@ -22,7 +22,7 @@ export class HTTPGateway implements IGatewayHTTP, ISWRSupport {
   }
 
   async fetcher(path: string) {
-    const result = await this.get(path)
+    const result = await axios.get(path)
     return result.data
   }
 }
