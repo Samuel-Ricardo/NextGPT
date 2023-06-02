@@ -63,7 +63,7 @@ describe("Service -> Chat", () => {
       .mockResolvedValue([VALID_IMESSAGE_WITHOUT_CHAT])
 
     await expect(
-      service.selectMessage({ chat_id: VALID_CHAT.id! })
+      service.selectMessages({ chat_id: VALID_CHAT.id! })
     ).resolves.toStrictEqual([VALID_IMESSAGE_WITHOUT_CHAT])
 
     expect(select.execute).toHaveBeenCalledTimes(1)
