@@ -1,11 +1,16 @@
 import { IMessageGateway } from "@modules/message/gateway"
 import { GatewayGRCP } from ".."
 import { MESSAGES_EVENTS } from "@config/routes"
+import axios from "axios"
 
 export class AxiosMessageGateway
   extends GatewayGRCP
   implements IMessageGateway
 {
+  async fetcher(path: string) {
+    return (await axios.get(path)).data.messages
+  }
+
   stream(path: string) {
     console.log("INIT STREAM FOR:", path)
 
