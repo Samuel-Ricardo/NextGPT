@@ -4,6 +4,7 @@ import {
   ICreateChatDTO,
   IGetMessagesDTO,
   ISelectAllChatsDTO,
+  ISelectChatDTO,
 } from "../DTO"
 import { ChatService } from "../service"
 import { NotFoundError } from "@/config/errors"
@@ -20,12 +21,18 @@ export class ChatController {
     return await this.service.selectAllChats(data)
   }
 
-  async select(data: IGetMessagesDTO) {
+  async select(data: ISelectChatDTO) {
+    return await this.service.selectChat(data)
+  }
+
+  async selectMessages(data: IGetMessagesDTO) {
     const error = new NotFoundError()
-    if (data.chat_id !== data.token.sub)
+
+    if (data.user_id !== data.token.sub)
       return NextResponse.json({ error }, { status: error.statusCode })
 
-    const messages = await this.service.selectMessage(data)
+    const messages = await this.service.selectMessages(data)
+
     return new NextResponse(JSON.stringify({ messages }))
   }
 
