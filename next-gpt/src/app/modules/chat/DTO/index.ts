@@ -1,3 +1,4 @@
+export * from "./select_by_id"
 export * from "./create"
 export * from "./add_message"
 export * from "./get_messages"
