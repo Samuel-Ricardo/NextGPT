@@ -56,19 +56,19 @@ export default function Home() {
         Hi! :D
       </div>
 
-      <div className={styles.grid}>
-        <a
-          onClick={() => router.push("/chat")}
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Chat With GPT :D<span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Go to Application!</p>
-        </a>
+      <a
+        onClick={() => router.push("/chat")}
+        className={styles.card}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <h2 className={inter.className}>
+          Chat With GPT :D<span>-&gt;</span>
+        </h2>
+        <p className={inter.className}>Go to Application!</p>
+      </a>
 
+      <div className={styles.grid}>
         <a
           href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className={styles.card}
