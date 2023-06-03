@@ -3,6 +3,7 @@
  */
 
 import { ROUTES } from "@/config"
+import { headers } from "@/config/const"
 // import { GENERATE_TOKEN_DATA } from "@/config/const"
 // import { Chat } from "@prisma/client"
 // import axios from "axios"
@@ -14,10 +15,7 @@ describe("[API] - route: /chat", () => {
 
     const response = await fetch(ROUTES.CHAT, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: `next-auth.csrf-token=${CSRF}`,
-      },
+      headers,
       body: JSON.stringify({ message: "Hello World" }),
     })
 
@@ -29,6 +27,9 @@ describe("[API] - route: /chat", () => {
     console.log({ created })
 
     expect(response.status).toBe(200)
-    expect(created.error.statusCode).toBe(401)
+    //expect(created.error.statusCode).toBe(401)
+
+    expect(created).toHaveProperty("chat")
+    expect(created.chat).toHaveProperty("id")
   })
 })
