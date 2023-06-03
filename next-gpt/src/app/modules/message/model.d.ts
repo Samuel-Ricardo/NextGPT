@@ -5,5 +5,5 @@ export interface IMessage {
   has_answered: boolean
   is_from_bot: boolean
   created_at: Date
-  chat: IChat
+  chat?: IChat
 }
