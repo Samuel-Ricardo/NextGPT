@@ -3,6 +3,7 @@ export const ENV = {
   PORT: () => process.env.PORT || 3000,
   API: {
     URL: () => process.env.API_URL || "http://localhost:3000/",
+    AUTH_TOKEN: () => process.env.AUTH_TOKEN as string,
   },
   GRCP: {
     AUTHORIZATION: () => process.env.GRCP_AUTHORIZATION || "123456",
