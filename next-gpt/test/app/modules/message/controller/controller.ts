@@ -4,6 +4,7 @@ import {
   VALID_IMESSAGE,
   VALID_IMESSAGE_WITHOUT_CHAT,
 } from "@/config/const"
+import { Message } from "@modules/message/entity"
 import { mockMessageService } from "@test/mock/service/message"
 import { resetMocks } from "@test/utils/mock"
 
@@ -19,16 +20,19 @@ describe("[Controller] => Message", () => {
   })
 
   it("should be able to create a Message", async () => {
-    service.createMessage.mockResolvedValue(VALID_IMESSAGE)
+    service.createMessage.mockResolvedValue(VALID_IMESSAGE as Message)
 
-    const result = await controller.create(VALID_IMESSAGE_WITHOUT_CHAT)
+    const result = await controller.create({
+      ...VALID_IMESSAGE_WITHOUT_CHAT,
+      remote_chat_id: "1",
+    })
 
     expect(result).toEqual(VALID_IMESSAGE)
     expect(service.createMessage).toHaveBeenCalledTimes(1)
   })
 
   it("should be able to slect a Messages with ID", async () => {
-    service.selectMessageById.mockResolvedValue(VALID_IMESSAGE)
+    service.selectMessageById.mockResolvedValue(VALID_IMESSAGE as Message)
 
     const result = await controller.selectById(VALID_IMESSAGE.id!)
 
