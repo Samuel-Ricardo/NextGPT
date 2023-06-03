@@ -2,45 +2,43 @@
  * @jest-environment ./prisma/prisma-environment-jest
  */
 
-import { CHAT_MESSAGES } from "@/config/routes"
+import { CHAT, CHAT_MESSAGES } from "@config/routes"
+import { headers } from "@config/const"
 import "isomorphic-fetch"
 
 describe("ROUTES | CHAT_MESSAGES => /api/chat/[chatId]/messages", () => {
-  //   it(" Should return empty array when no messages | GET | /api/chat/[chatId]/messages ", async () => {
-  //     const response = await fetch(CHAT_MESSAGES("0"))
-  //     const data = await response.json()
+  it(" Should select all messages from a chat | GET | /api/chat/[chatId]/messages ", async () => {
+    const chat = (await (await fetch(CHAT, { headers })).json()).chat[0]
 
-  //     expect(response.status).toBe(200)
-  //     expect(data).toBeInstanceOf(Object)
-  //     expect(data).toHaveProperty("messages")
-  //     expect(data.messages).toBeInstanceOf(Array)
-  //   })
+    const response = await fetch(CHAT_MESSAGES(chat.id!), { headers })
+    const data = await response.json()
 
-  //   it(" Should select all messages from a chat | GET | /api/chat/[chatId]/messages ", async () => {
-  //     const response = await fetch(CHAT_MESSAGES("1"))
-  //     const data = await response.json()
+    expect(response.status).toBe(200)
+    expect(data).toBeInstanceOf(Object)
+    expect(data).toHaveProperty("messages")
+    expect(data.messages).toBeInstanceOf(Array)
 
-  //     expect(response.status).toBe(200)
-  //     expect(data).toBeInstanceOf(Object)
-  //     expect(data).toHaveProperty("messages")
-  //     expect(data.messages).toBeInstanceOf(Array)
-  //   })
+    for (const message of data.messages) {
+      expect(message).toHaveProperty("id")
+    }
+  })
 
-  //   it(" Should return error 500 when no chat found [ POST ] /api/chat/[chatId]/messages ", async () => {
-  //     const response = await fetch(CHAT_MESSAGES("1"), {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         message: "Hello World",
-  //       }),
-  //     })
+  it(" Should return error 500 when no chat found [ POST ] /api/chat/[chatId]/messages ", async () => {
+    const response = await fetch(CHAT_MESSAGES("1"), {
+      method: "POST",
+      body: JSON.stringify({
+        message: "Hello World",
+      }),
+      headers,
+    })
 
-  //     expect(response.status).toBe(500)
+    expect(response.status).toBe(500)
 
-  //     /*
-  //     const data = await response.json()
-  //     console.log({ data })
-  //   */
-  //   })
+    /*
+    const data = await response.json()
+    console.log({ data })
+  */
+  })
 
   it("Should connect successfully but return unauthenticated", async () => {
     const response = await fetch(CHAT_MESSAGES("1"))
