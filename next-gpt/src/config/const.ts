@@ -5,6 +5,11 @@ import { IChat } from "@modules/chat/model"
 import { IMessage } from "@modules/message/model"
 import { ENV } from "."
 
+export const headers = {
+  "Content-Type": "application/json",
+  Cookie: ENV.API.AUTH_TOKEN(),
+}
+
 export const ELEMETNS = {
   ID: {
     MESSAGE: "message",
