@@ -93,4 +93,12 @@ describe("Service -> Chat", () => {
 
     expect(append.execute).toHaveBeenCalledTimes(1)
   })
+
+  it("Should select chat by id successfully", async () => {
+    jest.spyOn(selectChatById, "execute").mockResolvedValue(VALID_CHAT)
+
+    await expect(
+      service.selectChat({ chat_id: VALID_CHAT.id! })
+    ).resolves.toStrictEqual(VALID_CHAT)
+  })
 })
