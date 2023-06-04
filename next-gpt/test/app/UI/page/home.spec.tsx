@@ -34,4 +34,12 @@ describe("[UI] - Page: Home", () => {
     expect(button).toBeInTheDocument()
   })
 
+  it("Should render Go To Chat Button", async () => {
+    render(<Home/>)
+
+    const button = screen.getByTestId(ELEMETNS.ID.GO_TO_CHAT_BUTTON)
+    
+    expect(button).toBeInTheDocument()
+  })
+
 })
