@@ -3,7 +3,6 @@
  * */
 
 
-import { useRouter } from 'next/router';
 import { render, screen, fireEvent } from '@testing-library/react';
 import mockRouter from 'next-router-mock';
 import '@testing-library/jest-dom/extend-expect';
