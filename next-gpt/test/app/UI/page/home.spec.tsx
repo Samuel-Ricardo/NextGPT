@@ -25,6 +25,13 @@ describe("[UI] - Page: Home", () => {
     expect(main).toBeInTheDocument()
   })
 
+  it("Should render Hello Button", async () => {
   
+    render(<Home/>)
+
+    const button = screen.getByTestId(ELEMETNS.ID.HELLO_BUTTON)
+
+    expect(button).toBeInTheDocument()
+  })
 
 })
