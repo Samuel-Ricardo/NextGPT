@@ -7,6 +7,15 @@ const createJestConfig = nextJest({
 
 /** @type {import('jest').Config} */
 const config ={
+
+  globals: {
+            "ts-jest": {
+              useESM: true,
+              tsconfig: "tsconfig.json",
+              diagnostics: true
+            }
+          },
+
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   roots: ["<rootDir>/src", "<rootDir>/test"],
   testEnvironment: 'node',
