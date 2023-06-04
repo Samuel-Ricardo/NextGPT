@@ -3,12 +3,10 @@
 import Image from "next/image"
 import { Inter } from "next/font/google"
 import styles from "./page.module.css"
-import { MIDDLEWARE } from "@/middlewarePack"
 import { useRouter } from "next/navigation"
+import { ELEMETNS } from "@config/const"
 
 const inter = Inter({ subsets: ["latin"] })
-
-MIDDLEWARE.BASE()
 
 export default function Home() {
   const router = useRouter()
@@ -50,6 +48,8 @@ export default function Home() {
       </div>
 
       <div
+        id={ELEMETNS.ID.HELLO_BUTTON}
+        data-testid={ELEMETNS.ID.HELLO_BUTTON}
         className={`${styles.code} backdrop-blur-sm bg-slate-200  px-10 rounded text-2xl my-3 `}
         onClick={() => router.push("/chat")}
       >
@@ -57,6 +57,7 @@ export default function Home() {
       </div>
 
       <a
+        data-testid={ELEMETNS.ID.GO_TO_CHAT_BUTTON}
         onClick={() => router.push("/chat")}
         className={styles.card}
         target="_blank"
