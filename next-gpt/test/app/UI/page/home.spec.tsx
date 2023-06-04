@@ -42,4 +42,22 @@ describe("[UI] - Page: Home", () => {
     expect(button).toBeInTheDocument()
   })
 
+  it("Should route to Chat", async () => {
+    render(<Home/>)
+
+    jest.spyOn(mockRouter, 'push')
+
+    const button = screen.getByTestId(ELEMETNS.ID.HELLO_BUTTON)
+
+    button.onclick = (event) => mockRouter.push("/chat")
+    button.click()
+
+    expect(mockRouter.push).toHaveBeenCalledTimes(1)
+    expect(mockRouter.push).toHaveBeenCalledWith("/chat")
+
+    expect(mockRouter.pathname).toBe("/chat")
+  })
+
+  
+
 })
