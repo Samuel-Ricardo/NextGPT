@@ -175,7 +175,7 @@ export default function ChatScreen() {
   }
 
   return (
-    <div className={`${styles.main}`}>
+    <div className={`${styles.main}`} data-testid="main">
       <div className={styles.center}>
         <Image
           className={styles.logo}
