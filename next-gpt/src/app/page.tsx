@@ -57,6 +57,7 @@ export default function Home() {
       </div>
 
       <a
+        id={ELEMETNS.ID.GO_TO_CHAT_BUTTON}
         data-testid={ELEMETNS.ID.GO_TO_CHAT_BUTTON}
         onClick={() => router.push("/chat")}
         className={styles.card}
