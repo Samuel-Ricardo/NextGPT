@@ -31,5 +31,15 @@ describe("[UI] - Page: Chat", () => {
     expect(chat).toBeVisible() 
   })
 
+  it ("Should render text area", () => {
+    render(<ChatScreen/>)
+
+    const typeBar = screen.queryByTestId(ELEMETNS.ID.MESSAGE)
+
+    expect(typeBar).toBeInTheDocument();
+    expect(typeBar).toBeVisible();
+    expect(typeBar?.getAttribute("placeholder")).toEqual("Type your message...");
+  })
+
   
 })
