@@ -12,6 +12,7 @@ export function MessagesRender({
     <div className="h-full w-full overflow-y-auto bg-gray-800 p-3">
       <ul
         id={ELEMETNS.ID.CHATTING}
+        data-testid={ELEMETNS.ID.CHATTING}
         className="h-full w-full overflow-y-auto bg-transparent rounded-xl"
       >
         {messages.map((message, key) => (
