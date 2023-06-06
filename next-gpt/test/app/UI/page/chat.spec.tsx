@@ -20,6 +20,16 @@ jest.mock('next/navigation', () => ({
 
 describe("[UI] - Page: Chat", () => {
   
-  
+  it ("Should Render chat", () => {
+    render(
+      <ChatScreen/>
+    )
 
+    const chat = screen.getByTestId(ELEMETNS.ID.CHATTING)
+
+    expect(chat).toBeInTheDocument()
+    expect(chat).toBeVisible() 
+  })
+
+  
 })
