@@ -1,8 +1,8 @@
 import { defineConfig } from "cypress"
 
 export default defineConfig({
-  viewportWidth: 720,
-  viewportHeight: 1280,
+  viewportWidth: 1280,
+  viewportHeight: 720,
   video: true,
   screenshotOnRunFailure: true,
   videosFolder: "cypress/videos",
@@ -13,5 +13,10 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: "http://localhost:3000",
+    specPattern: [
+      "test/app/E2E/**/*.{js,jsx,ts,tsx}",
+      "cypress/e2e/**/*.{js,jsx,ts,tsx}",
+    ],
   },
 })
