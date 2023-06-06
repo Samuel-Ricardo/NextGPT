@@ -15,4 +15,10 @@ describe("Initial application flux", () => {
   it("should load app", () => {
     cy.get("main").should("exist")
   })
+
+  it("Should redirect to the login page", () => {
+    cy.get(`#${ID.HELLO_BUTTON}`).click()
+
+    cy.url().should("include", "/login")
+  })
 })
