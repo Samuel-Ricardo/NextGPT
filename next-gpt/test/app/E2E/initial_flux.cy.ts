@@ -10,7 +10,5 @@ describe("Initial application flux", () => {
     CHATTING: "chatting",
   }
 
-  beforeEach(() => {
-    cy.visit("/")
-  })
+  beforeEach(() => cy.visit("/"))
 })
