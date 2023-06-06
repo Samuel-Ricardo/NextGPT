@@ -41,5 +41,15 @@ describe("[UI] - Page: Chat", () => {
     expect(typeBar?.getAttribute("placeholder")).toEqual("Type your message...");
   })
 
-  
+  it("Should render submit button", () => {
+    render(<ChatScreen/>)
+
+    const submit = screen.getByTestId(ELEMETNS.ID.SUBMIT)
+
+    expect(submit).toBeInTheDocument();
+    expect(submit).toBeVisible();
+    expect(submit).toBeEnabled();
+
+  })
+
 })
