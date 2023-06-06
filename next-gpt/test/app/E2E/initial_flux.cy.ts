@@ -11,4 +11,8 @@ describe("Initial application flux", () => {
   }
 
   beforeEach(() => cy.visit("/"))
+
+  it("should load app", () => {
+    cy.get("main").should("exist")
+  })
 })
