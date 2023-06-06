@@ -9,10 +9,13 @@ import { render, screen } from "@testing-library/react";
 import Home from '@/app/page'
 import mockRouter from 'next-router-mock';
 import { ELEMETNS } from '@/config/const';
+import { resetMocks } from '@test/utils/mock';
 
 jest.mock('next/navigation', () => require('next-router-mock'));
 
 describe("[UI] - Page: Home", () => {
+
+  beforeEach(() => resetMocks() )
 
   it("should render", () => {
 
