@@ -21,4 +21,27 @@ describe("Initial application flux", () => {
 
     cy.url().should("include", "/login")
   })
+
+  it("Should login sucsessfully", () => {
+    cy.get(`#${ID.GO_TO_CHAT_BUTTON}`).click()
+
+    cy.url().should("include", "/login")
+
+    cy.origin("http://host.docker.internal:9000", () => {
+      cy.get(`#username`).type("admin")
+      cy.get(`#password`).type("admin")
+
+      //cy.getAllCookies().debug({log:true})
+      cy.getAllCookies().should("have.length.greaterThan", 0)
+
+      cy.getCookie("AUTH_SESSION_ID_LEGACY").should("exist")
+      cy.getCookie("KC_RESTART").should("exist")
+
+      cy.get(`input[type=submit]`).click()
+    })
+
+    cy.get(`button[type=submit]`).click()
+
+    cy.getCookie("next-auth.session-token").should("exist")
+  })
 })
