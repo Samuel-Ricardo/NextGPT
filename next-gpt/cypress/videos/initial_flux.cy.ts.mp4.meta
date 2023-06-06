@@ -1,0 +1,16 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=-1341
+END=5267
+title=Initial application flux should load app
+[CHAPTER]
+TIMEBASE=1/1000
+START=4141
+END=11878
+title=Initial application flux Should redirect to the login page
+[CHAPTER]
+TIMEBASE=1/1000
+START=12717
+END=19619
+title=Initial application flux Should login sucsessfully
