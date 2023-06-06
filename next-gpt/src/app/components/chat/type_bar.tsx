@@ -17,6 +17,7 @@ export function TypeBar({
           <div className="flex flex-col py-3 pl-4 relative text-white bg-gray-700 rounded-2xl opacity-80">
             <textarea
               id={ELEMETNS.ID.MESSAGE}
+              data-testid={ELEMETNS.ID.MESSAGE}
               tabIndex={0}
               rows={1}
               placeholder="Type your message..."
@@ -26,6 +27,7 @@ export function TypeBar({
 
             <button
               id={ELEMETNS.ID.SUBMIT}
+              data-testid={ELEMETNS.ID.SUBMIT}
               type="submit"
               className="absolute top-1 text-gray-400 bottom-2.5 rounded hover:text-gray-400 hover:bg-gray-900 md:right-4"
               disabled={messageLoading}
