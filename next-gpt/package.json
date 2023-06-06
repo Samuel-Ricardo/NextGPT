@@ -15,10 +15,12 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
-    "test": "jest --passWithNoTests --color",
+    "test": "jest --passWithNoTests --color && cypress run",
     "test:dev": "jest --watchAll --passWithNoTests --color",
     "test:staged": "jest --findRelatedTests  --passWithNoTests --color .",
     "test:dev:staged": "jest --findRelatedTests  --passWithNoTests --watchAll --color .",
+    "test:cypress": "cypress open",
+    "test:E2E": "cypress run",
     "grpc:compile": "rm -rf ./src/grpc/rpc && proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/grpc/rpc ./proto/*.proto"
   },
   "dependencies": {
@@ -61,7 +63,8 @@
     "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "webpack": "^5.85.1"
   },
   "devDependencies": {
     "cypress": "^12.13.0",
