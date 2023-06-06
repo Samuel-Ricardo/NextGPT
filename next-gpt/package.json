@@ -64,6 +64,7 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "cypress": "^12.13.0",
     "prisma": "^4.13.0"
   }
 }
