@@ -1,5 +1,5 @@
 import { UserIcon } from "@/app/assets/icons"
-import { LOGO } from "@config/const"
+import { ELEMETNS, LOGO } from "@config/const"
 import { IChatItemProps } from "@Types"
 import { Loading, MarkDownRender } from ".."
 import Image from "next/image"
@@ -12,7 +12,12 @@ export const ChatItem = ({ is_from_bot, content, loading }: IChatItemProps) => {
       className={`min-w-max w-2/3 p-2 text-gray-100 ${background} rounded m-5 ml-auto mr-auto`}
     >
       <div className="flex-col">
-        <div className="md:max-w-2xl lg:max-w-xl xl:max-w-3xl py-6 m-auto flax flex-row items-start space-x-4">
+        <div
+          data-cy={
+            is_from_bot ? ELEMETNS.ID.BOT_MESSAGE : ELEMETNS.ID.USER_MESSAGE
+          }
+          className="md:max-w-2xl lg:max-w-xl xl:max-w-3xl py-6 m-auto flax flex-row items-start space-x-4"
+        >
           {is_from_bot ? (
             <Image
               src={LOGO.FULL_CYCLE}
