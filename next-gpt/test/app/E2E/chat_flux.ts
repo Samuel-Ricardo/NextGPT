@@ -8,11 +8,15 @@ describe("Chatting Flux", () => {
     CHATTING: "chatting",
     NEW_CHAT_BUTTON: "new_chat_button",
     LOGOUT_BUTTON: "logout_button",
+
+    LOADING: "loading",
+    USER_MESSAGE: "user_message",
+    BOT_MESSAGE: "bot_message",
   }
 
-  beforeEach(() => cy.visit("/"))
+  beforeEach(() => {
+    cy.visit("http://localhost:3000")
 
-  it("Should render chat correctly", () => {
     cy.get(`#${ID.GO_TO_CHAT_BUTTON}`).click()
 
     cy.url().should("include", "/login")
@@ -36,7 +40,9 @@ describe("Chatting Flux", () => {
 
     cy.get(`#${ID.GO_TO_CHAT_BUTTON}`).click()
     cy.url().should("include", "/chat")
+  })
 
+  it("Should render chat correctly", () => {
     cy.get(`#${ID.NEW_CHAT_BUTTON}`)
       .should("exist")
       .should("be.visible")
@@ -64,5 +70,19 @@ describe("Chatting Flux", () => {
     cy.get(`#${ID.FORM}`).should("exist")
 
     cy.get(`#${ID.CHATTING}`).should("exist")
+  })
+
+  it("Should talk with AI", () => {
+    cy.get(`#${ID.MESSAGE}`).clear().type("Hello World! :D")
+
+    cy.get(`#${ID.SUBMIT}`).click()
+
+    cy.get(`#${ID.LOADING}`).should("exist")
+
+    cy.get(`[data-cy=${ID.USER_MESSAGE}]`).should("exist")
+
+    cy.get(`[data-cy=${ID.BOT_MESSAGE}]`).should("exist")
+
+    cy.get(`#${ID.LOADING}`).should("not.exist")
   })
 })
