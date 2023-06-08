@@ -15,10 +15,16 @@ export const ELEMETNS = {
     GO_TO_CHAT_BUTTON: "go_to_chat_button",
     HELLO_BUTTON: "hello_button",
     MESSAGE: "message",
-    TEXT_AREA: "text-area",
+    // TEXT_AREA: "text-area",
     FORM: "form",
     SUBMIT: "submit",
     CHATTING: "chatting",
+    NEW_CHAT_BUTTON: "new_chat_button",
+    LOGOUT_BUTTON: "logout_button",
+
+    LOADING: "loading",
+    USER_MESSAGE: "user_message",
+    BOT_MESSAGE: "bot_message",
   },
 }
 
