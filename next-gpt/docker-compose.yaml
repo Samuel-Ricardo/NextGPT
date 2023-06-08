@@ -19,7 +19,7 @@ services:
     restart: on-failure
     container_name: app_test
     build: .
-    command: npm run test
+    command: npm run test:docker
     volumes:
       - .:/home/node/app
     extra_hosts:
