@@ -13,6 +13,7 @@ export function ChatSidebar({
   return (
     <Sidebar>
       <button
+        id={ELEMETNS.ID.NEW_CHAT_BUTTON}
         className="flex p-3 gap-3 rounded hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-1 border border-white/20"
         onClick={onNewChatButtonClick}
       >
