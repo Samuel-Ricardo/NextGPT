@@ -15,7 +15,7 @@ const BASE = {
     BASE._URL = process.env.DATABASE_URL
     
     // inside Container
-    BASE._URL = process.env.DOCKER_DATABASE_URL
+    //BASE._URL = process.env.DOCKER_DATABASE_URL
 
     return BASE._URL
   }
@@ -55,7 +55,7 @@ class CustomEnvironment extends TestEnvironment {
   teardown() {
     this.database.forEach(async (database) => {
       const client = mysql.createConnection({  
-        host: "mysql",
+        host: "localhost",
         user: "root",
         password: "root",
         port: 3307,
