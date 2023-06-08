@@ -15,7 +15,8 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "pretty": "prettier --no-error-on-unmatched-pattern --write --check ./src/**",
-    "test": "jest --passWithNoTests --color && cypress run",
+    "test": "jest --passWithNoTests --color && cypress install && cypress run",
+    "test:docker": "jest --passWithNoTests --color && cypress install && cypress run --config-file ./cypress_docker.config.ts",
     "test:dev": "jest --watchAll --passWithNoTests --color",
     "test:staged": "jest --findRelatedTests  --passWithNoTests --color .",
     "test:dev:staged": "jest --findRelatedTests  --passWithNoTests --watchAll --color .",
@@ -67,7 +68,7 @@
     "webpack": "^5.85.1"
   },
   "devDependencies": {
-    "cypress": "^12.13.0",
+    "cypress": "^12.14.0",
     "prisma": "^4.13.0"
   }
 }
