@@ -125,10 +125,47 @@
 
 > Among Others...
 
+#
+
 <br>
+
+
+<h2 id="app">
+  💻 | Application:
+</h2>
+
+> Go to the video demo by clicking on any image
+  
+  <br>
+  <br>
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT/tree/main/readme_file"> <img src="./readme_file/2image.png" /> </a>
+
+ First of all, this is a full stack app that une back and front end in the same project, all thanks to NextJS. So the backend part is a REST API with middlewares and routes authentications. This API communicate with GO Lang Microsservice to manage the chat life cycle and handle with GPT, by otherside, the api manage the user life cylce using Next Auth to connect with Keycloack a complete auth system with a dashboard full of functionalities that gives to you the control of system as user friendly way, perfect for no technical people,
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT/tree/main/readme_file"> <img src="./readme_file/1image.png" /> </a>
+
+ This whole project is concerned with having a robust base, for that, i apply concepts of clean archteture both in back and in front end for a better programming experience and maintainability, you can see patterns like, repository, gateway, controller, DTO, service (adapted), use case, factory, entity  and etc...
+
+ <br>
+
+ Still on the developmente expereince question, the most relevant part of code, bussines rules and possibles cases are covered by a full cycle of test that include from unit tests to End 2 End tests with Jest and Cypress, eslint and prettier to keep the code organization, pre-commit and pre-push routines that clean up the code and ensure safety before committing the changes and Docker to run all this infrastructure without headache and Dev Containers to run a complete off-the-shelf development environment.
+
+<br>
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT/tree/main/readme_file"> <img src="./readme_file/chat1.png" /> </a>
+
+This app uses advanced caching strategy using SWR, it allows to make better and performatic external calls including APIs and microservices, keeping smart caching, it is more fast, efficient and cost-effective than common way, Enabling your app to perform more without degrading the user experience
+
+<br>
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT/tree/main/readme_file"> <img src="./readme_file/chat2.png" /> </a>
+
+The data is storaged in a MySQL Database that is managed by Prisma that make developers life easier, you can access the database by using adminer (light) or phpmyadmin (full) dashboard, the beautifull visual is build with TailwindCSS with a amazing and perfomatic way of use CSS Style Classes. Proto work by handling gRPC data and converting to TypeScript data structure.
 
 #
 
+<br>
 
 <h2 id="run-project"> 
    👨‍💻 | How to use
