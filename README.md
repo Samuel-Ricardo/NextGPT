@@ -96,8 +96,10 @@
 > <a href='https://nextjs.org/'> <img width="128px" src="https://nextjs.org/static/blog/next-13-4/twitter-card.png" /> </a>
 
 - NextJS
+- REST
 - gRPC
 - SWR
+- Server Sent Events
 - Streams
 - TailwindCSS
 - Prisma
@@ -202,9 +204,18 @@ GET http://localhost:3000/api/messages/{{messageId}}/events
 
 ```
 
+<br>
 
+<h3> [💻] - Project Plannig: <h3>
+
+
+ <img src"./readme_file/Untitled.png"/>
+
+
+#
 
 <br>
+
 
 <h2 id="run-project"> 
    👨‍💻 | How to use
