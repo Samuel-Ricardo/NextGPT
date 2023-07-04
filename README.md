@@ -209,7 +209,7 @@ GET http://localhost:3000/api/messages/{{messageId}}/events
 <h3> [💻] - Project Plannig: <h3>
 
 
- <img src"./readme_file/Untitled.png"/>
+ <img src="./readme_file/Untitled.png"/>
 
 
 #
