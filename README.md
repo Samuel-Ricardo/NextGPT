@@ -116,8 +116,10 @@
 - lint-staged
 - Highlight.js
 - Mullti Thread and Concurrency
+- Design Patterns
 - Perfomance
-- Event Driven Architeture
+- Clean Architeture
+- Clean Code / SOLID
 - Scalability
 - Real Time
 
