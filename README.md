@@ -70,6 +70,10 @@
     This application is a chat site to talk directly with a AI powered by the amazing OpenAI Chat GPT, creating chats with isolated context and real time messages and stream responses, using a advanced authentication system all this with a clean and modern Metalic UI.
 </p>
 
+<p align="justify">
+    Here i use a complete test ambiente, Unit test, E2E, back-end, front-end, using jest, cypress... All application have a robust base because of it.
+</p>
+
 > <a href="https://github.com/Samuel-Ricardo" target="_blank"> <img src="https://github.com/Samuel-Ricardo/GPT-Chat_Service/raw/main/readme_files/app_preview.png"> </a>
 
   <br>
@@ -84,6 +88,44 @@
 #
 
 <br>
+
+<h2 id="techs">
+  :building_construction: | Technologies and Concepts Studied:
+</h2>
+
+> <a href='https://nextjs.org/'> <img width="128px" src="https://nextjs.org/static/blog/next-13-4/twitter-card.png" /> </a>
+
+- NextJS
+- gRPC
+- SWR
+- Streams
+- TailwindCSS
+- Prisma
+- MySQL
+- Typescript
+- Jest
+- Cypress
+- Docker
+- Enzyme
+- Marked
+- Axios
+- eslint
+- Prettier
+- husky
+- isomorphic-fetch
+- lint-staged
+- Highlight.js
+- Mullti Thread and Concurrency
+- Perfomance
+- Event Driven Architeture
+- Scalability
+- Real Time
+
+> Among Others...
+
+<br>
+
+#
 
 
 <h2 id="run-project"> 
