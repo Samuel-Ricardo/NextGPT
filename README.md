@@ -85,6 +85,77 @@
 
 <br>
 
-<h2 id="techs">
-  :building_construction: | Technologies and Concepts Studied:
+
+<h2 id="run-project"> 
+   👨‍💻 | How to use
 </h2>
+
+<br>
+
+### Open your Git Terminal and clone this repository
+
+```git
+  $ git clone "git@github.com:Samuel-Ricardo/NextGPT.git"
+```
+
+### Make Pull
+
+```git
+  $ git pull "git@github.com:Samuel-Ricardo/NextGPT.git"
+```
+
+<br>
+
+This application use `Docker` so you dont need to install and cofigurate anything other than docker on your machine.
+
+> <a target="_blank" href="https://www.docker.com/"> <img width="48px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain-wordmark.svg" /> </a>
+
+<br>
+
+Once Docker is setup, we can start the project :D
+
+</p>
+
+```bash
+
+  # After setup docker environment just run this commmand on root project folder:
+
+  $ docker-compose up --build   # For First Time run this command
+
+  $ docker-compose up           # to run project
+
+
+```
+
+```bash
+
+  #Apps Running on:
+
+  $ Site: http://localhost:3000
+
+  See more: ./next-gpt/docker-compose.yaml
+
+```
+
+<br>
+
+<h2> 
+   👨‍💻 | How to run the full project
+</h2>
+
+First, you need to setup the GO Lang Microsservice, click on image bellow to setup it
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/GPT-Chat_Service#------how-to-use"> <img width="128px" src="https://cdn.thenewstack.io/media/2022/05/57bb2a1f-golang.png"/> </a>
+
+Now, you can setup this NextJS App, click on image bellow to setup it
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT#run-project"> <img width="128px" src="https://wallpapercave.com/dwp1x/wp11846969.jpg"/> </a>
+
+#
+
+<br>
+<br>
+
+#
+
+
