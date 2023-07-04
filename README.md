@@ -165,6 +165,45 @@ The data is storaged in a MySQL Database that is managed by Prisma that make dev
 
 #
 
+> API Example:
+
+```bash
+
+GET http://localhost:3000/api/hello
+
+###
+POST http://localhost:3000/api/chats
+Content-Type: application/json
+
+{
+  "message": "Hello World"
+}
+
+###
+GET http://localhost:3000/api/chats
+
+###
+@chatId = 
+
+GET http://localhost:3000/api/chats/{{chatId}}/messages
+
+###
+POST http://localhost:3000/api/chats/{{chatId}}/messages
+Content-Type: application/json
+
+{
+  "message": "Estou testando a API 2222"
+}
+
+###
+@messageId = d56cf557-17b5-4a9f-ac58-1f0be4bccbe3
+
+GET http://localhost:3000/api/messages/{{messageId}}/events
+
+```
+
+
+
 <br>
 
 <h2 id="run-project"> 
