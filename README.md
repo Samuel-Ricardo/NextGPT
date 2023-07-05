@@ -245,6 +245,14 @@ This application use `Docker` so you dont need to install and cofigurate anythin
 
 Once Docker is setup, we can start the project :D
 
+<br>
+
+<p align="justify">
+    You will see that it runs all tests and repeat every time they fail until 100% have success in a separated container and later down it.
+</p>
+
+<p align="justify">
+    For the first time the project should run, but some test will doesn't work. It happens because the Keycloak needs to be manually configurated after all container up, you can stop the test container for now.
 </p>
 
 ```bash
@@ -255,18 +263,41 @@ Once Docker is setup, we can start the project :D
 
   $ docker-compose up           # to run project
 
-
 ```
+
+<img src="./readme_file/containers.png"/>
 
 ```bash
 
   #Apps Running on:
 
-  $ Site: http://localhost:3000
+  $ Site : http://localhost:3000
+  
+  $ API  : htpp://localhost:3000
+  
+  $ Keyclock: http://localhost:9000 - [AUTH]
+  
+  $ MySQL: localhost:3307 - [DB]
+  
+  # DB Manager
+  
+  $ Adminer    : http://localhost:8080 - [light]    - [optional]
+  $ PHPMyAdmin : http://localhost:8088 - [complete] - [optional]
+
+  # Test
+
+  $ app_test     : run all tests and repeat until have 100% success, when it happen the container stop - [optional]
+  $ app_dev_test : Detect project changes and run tests related with this changes if exists - [optional] 
 
   See more: ./next-gpt/docker-compose.yaml
 
+  [optional] - you can stop this container to free up the processor and memory and the app will still be running normally
+
 ```
+
+<p align="justify" >
+    
+</p>
 
 <br>
 
