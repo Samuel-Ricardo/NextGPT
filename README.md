@@ -167,6 +167,18 @@ The data is storaged in a MySQL Database that is managed by Prisma that make dev
 
 #
 
+> <img src="./readme_file/adminer.png"/>
+
+> <img src="./readme_file/adminer2.png"/>
+
+#
+
+> <img src="./readme_file/phpmyadmin.png"/>
+
+> <img src="./readme_file/phpmyadmin2.png"/>
+
+#
+
 > API Example:
 
 ```bash
@@ -215,6 +227,19 @@ GET http://localhost:3000/api/messages/{{messageId}}/events
 #
 
 <br>
+
+<h2> 
+   👨‍💻 | How to run the full project
+</h2>
+
+First, you need to setup the GO Lang Microsservice, click on image bellow to setup it
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/GPT-Chat_Service#------how-to-use"> <img width="128px" src="https://cdn.thenewstack.io/media/2022/05/57bb2a1f-golang.png"/> </a>
+
+Now, you can setup this NextJS App, click on image bellow to setup it
+
+> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT#run-project"> <img width="128px" src="https://wallpapercave.com/dwp1x/wp11846969.jpg"/> </a>
+
 
 
 <h2 id="run-project"> 
@@ -295,23 +320,73 @@ Once Docker is setup, we can start the project :D
 
 ```
 
-<p align="justify" >
-    
-</p>
+#### * First of all let's setup Keycloack (You need to do this every time you re-build this project)
 
 <br>
 
-<h2> 
-   👨‍💻 | How to run the full project
-</h2>
+<p align="justify" >
+ Access Keycloack dashboard [http://localhost:9000] and go to <code>Administrator Console</code> and login as admin
+</p>
 
-First, you need to setup the GO Lang Microsservice, click on image bellow to setup it
+<img src="./readme_file/kaycloack.png"/>
 
-> <a target="_blank" href="https://github.com/Samuel-Ricardo/GPT-Chat_Service#------how-to-use"> <img width="128px" src="https://cdn.thenewstack.io/media/2022/05/57bb2a1f-golang.png"/> </a>
+```bash
 
-Now, you can setup this NextJS App, click on image bellow to setup it
+    $ login : admin
+    $ pass  : admin
 
-> <a target="_blank" href="https://github.com/Samuel-Ricardo/NextGPT#run-project"> <img width="128px" src="https://wallpapercave.com/dwp1x/wp11846969.jpg"/> </a>
+    $ See ./next-gpt/docker-compose.yaml
+
+```
+
+> <img src="./readme_file/keycloack2.png"/>
+
+Go to <code>Clients</code> and create a new client, name it <code>nextjs</code>
+
+> <img src="./readme_file/keycloack3.png"/>
+
+> <img src="./readme_file/keycloack4.png"/>
+
+> <img src="./readme_file/keycloack5.png"/>
+
+Now let's configurate the access for localhost:
+
+> <img src="./readme_file/keycloack6.png"/>
+
+Now create a secret and set it on  ```.env```  file 
+
+> <img src="./readme_file/keycloack7.png"/> 
+
+> <img src="./readme_file/keycloack8.png"/>
+
+> <img src="./readme_file/keycloack9.png"/>
+
+
+#### How to create users:
+
+> <img src="./readme_file/keycloakuser1.png"/>
+
+> <img src="./readme_file/keycloakuser2.png"/>
+
+Set user password:
+
+> <img src="./readme_file/keycloakuser3.png"/>
+
+> <img src="./readme_file/keycloakuser4.png"/>
+
+> <img src="./readme_file/keycloakuser5.png"/>
+
+#
+
+#### You need to setup a login token for tests
+
+> <img src="./readme_file/login1.png"/>
+
+> <img src="./readme_file/login2.png"/>
+
+> <img src="./readme_file/login3.png"/>
+
+ <img src="./readme_file/login4.png"/>
 
 #
 
